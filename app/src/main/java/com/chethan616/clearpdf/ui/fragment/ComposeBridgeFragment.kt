@@ -95,17 +95,6 @@ class ComposeBridgeFragment : Fragment() {
     private fun Route(route: String, uri: android.net.Uri?, backdrop: LayerBackdrop) {
         val context = LocalContext.current
         when (route) {
-            "pdf_viewer" -> {
-                val vm: PdfViewerViewModel = viewModel(factory = factory { PdfViewerViewModel(OpenPdfUseCase(PdfServiceLocator.pdfViewer)) })
-                LaunchedEffect(uri) { if (uri != null) vm.openPdf(context, uri) }
-                PdfViewerScreen(
-                    backdrop = backdrop,
-                    viewModel = vm,
-                    onBack = ::back,
-                    pendingLoad = uri != null,
-                    onOpenOfficeEngineSettings = { AppNavigator.open(findNavController(), R.id.settings) }
-                )
-            }
             "spreadsheet" -> {
                 val vm: SpreadsheetViewModel = viewModel()
                 LaunchedEffect(uri) { if (uri != null) vm.load(context, uri) }

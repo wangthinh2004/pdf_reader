@@ -1,0 +1,454 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background">
+
+    <!-- Pages -->
+    <com.chethan616.clearpdf.ui.fragment.viewer.ZoomRecyclerView
+        android:id="@+id/pages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:scrollbars="vertical"
+        android:visibility="gone" />
+
+    <!-- No document yet: pick one -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/empty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/empty_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/screen_padding">
+
+            <include
+                android:id="@+id/hero"
+                layout="@layout/view_tool_hero" />
+
+            <include
+                android:id="@+id/error"
+                layout="@layout/view_tool_status" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Password prompt -->
+    <LinearLayout
+        android:id="@+id/password_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="24dp"
+        android:background="@drawable/bg_card"
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_lock"
+            app:tint="@color/tool_encrypt" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/pdf_password_title"
+            android:textAppearance="@style/TextAppearance.ClearPDF.SectionTitle" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center"
+            android:text="@string/pdf_password_subtitle"
+            android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_layout"
+            style="@style/Widget.ClearPDF.TextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/pdf_password_hint"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/unlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/pdf_password_unlock"
+            app:backgroundTint="@color/tool_encrypt" />
+    </LinearLayout>
+
+    <!-- Loading curtain -->
+    <FrameLayout
+        android:id="@+id/loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/app_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            app:indicatorColor="@color/accent_blue" />
+    </FrameLayout>
+
+    <!-- Top chrome: title bar or search bar -->
+    <LinearLayout
+        android:id="@+id/top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:background="@color/app_surface"
+        android:elevation="2dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            app:navigationContentDescription="@string/back"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/app_text"
+            app:subtitleTextAppearance="@style/TextAppearance.ClearPDF.Caption"
+            app:titleTextAppearance="@style/TextAppearance.ClearPDF.ToolbarTitle" />
+
+        <LinearLayout
+            android:id="@+id/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar_height"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:visibility="gone">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/search_close"
+                style="@style/Widget.ClearPDF.IconButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/close"
+                app:icon="@drawable/ic_arrow_back" />
+
+            <EditText
+                android:id="@+id/search_input"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/viewer_find_hint"
+                android:imeOptions="actionSearch"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textColor="@color/app_text"
+                android:textColorHint="@color/app_text_secondary" />
+
+            <TextView
+                android:id="@+id/search_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/search_prev"
+                style="@style/Widget.ClearPDF.IconButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/previous"
+                app:icon="@drawable/ic_keyboard_arrow_up" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/search_next"
+                style="@style/Widget.ClearPDF.IconButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/next"
+                app:icon="@drawable/ic_keyboard_arrow_down" />
+        </LinearLayout>
+
+        <!-- Optional Office engine suggestion -->
+        <LinearLayout
+            android:id="@+id/office_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/app_surface_variant"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingTop="6dp"
+            android:paddingEnd="4dp"
+            android:paddingBottom="6dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/office_engine_hint"
+                    android:textAppearance="@style/TextAppearance.ClearPDF.BodyStrong"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/office_engine_hint_sub"
+                    android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/office_hint_get"
+                style="@style/Widget.ClearPDF.Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/office_engine_hint_action" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/office_hint_close"
+                style="@style/Widget.ClearPDF.IconButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="@string/dismiss"
+                app:icon="@drawable/ic_close"
+                app:iconSize="16dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Bottom chrome -->
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="@color/app_surface"
+        android:elevation="2dp"
+        android:orientation="vertical">
+
+        <!-- Actions for selected text -->
+        <HorizontalScrollView
+            android:id="@+id/text_actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/text_actions_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp" />
+        </HorizontalScrollView>
+
+        <!-- Actions for the selected annotation -->
+        <LinearLayout
+            android:id="@+id/markup_actions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp"
+            android:visibility="gone">
+
+            <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/markup_colors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/markup_edit"
+                style="@style/Widget.ClearPDF.IconButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/edit"
+                app:icon="@drawable/ic_edit" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/markup_delete"
+                style="@style/Widget.ClearPDF.IconButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/delete"
+                app:icon="@drawable/ic_delete"
+                app:iconTint="@color/accent_red" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/markup_done"
+                style="@style/Widget.ClearPDF.Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/viewer_done" />
+        </LinearLayout>
+
+        <!-- Options of the active tool -->
+        <LinearLayout
+            android:id="@+id/tool_options"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="8dp"
+            android:paddingTop="4dp"
+            android:paddingEnd="8dp"
+            android:visibility="gone">
+
+            <HorizontalScrollView
+                android:id="@+id/colors_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/colors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/width"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:contentDescription="@string/viewer_pen"
+                    android:valueFrom="0.002"
+                    android:valueTo="0.03"
+                    app:labelBehavior="gone" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/undo"
+                    style="@style/Widget.ClearPDF.IconButton"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:contentDescription="@string/viewer_undo"
+                    app:icon="@drawable/ic_undo" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/clear_page"
+                    style="@style/Widget.ClearPDF.IconButton"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:contentDescription="@string/viewer_clear"
+                    app:icon="@drawable/ic_delete_outline" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/tool_done"
+                    style="@style/Widget.ClearPDF.Button.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/viewer_done" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/app_divider" />
+
+        <!-- Tools -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <HorizontalScrollView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/tools"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp" />
+            </HorizontalScrollView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save"
+                style="@style/Widget.ClearPDF.IconButton.Filled"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:contentDescription="@string/viewer_save_edits"
+                app:icon="@drawable/ic_save" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Current page while scrolling / zoom level -->
+    <TextView
+        android:id="@+id/page_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/bg_pill"
+        android:backgroundTint="#B3000000"
+        android:paddingStart="10dp"
+        android:paddingTop="4dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="4dp"
+        android:textColor="@android:color/white"
+        android:textSize="12sp"
+        android:visibility="gone" />
+</FrameLayout>

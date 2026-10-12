@@ -32,8 +32,7 @@
 
     <fragment
         android:id="@+id/pdf_viewer"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="pdf_viewer" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.viewer.PdfViewerFragment">
         <argument android:name="uri" android:defaultValue="@null" app:argType="string" app:nullable="true" />
     </fragment>
 

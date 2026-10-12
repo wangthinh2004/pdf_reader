@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/viewer_find"
+        app:iconTint="@color/app_text"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_ios_share"
+        android:title="@string/viewer_share_document"
+        app:iconTint="@color/app_text"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/action_jump" android:title="@string/viewer_jump_to_page" />
+    <item android:id="@+id/action_bookmark" android:title="@string/viewer_bookmark_add" />
+    <item android:id="@+id/action_bookmarks" android:title="@string/viewer_bookmark_page" />
+    <item android:id="@+id/action_dark_pages" android:title="@string/viewer_page_dark_mode" />
+    <item android:id="@+id/action_auto_scroll" android:title="@string/viewer_auto_scroll_start" />
+    <item android:id="@+id/action_reset_zoom" android:title="@string/viewer_reset_zoom" />
+    <item android:id="@+id/action_ocr" android:title="@string/viewer_ocr" />
+    <item android:id="@+id/action_save" android:title="@string/viewer_save_edits" />
+    <item android:id="@+id/action_open_another" android:title="@string/viewer_open_another" />
+</menu>
