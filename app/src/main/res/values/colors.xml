@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Flat surfaces. Dark-mode values live in values-night/colors.xml. -->
+    <color name="app_background">#FFF2F2F7</color>
+    <color name="app_surface">#FFFFFFFF</color>
+    <color name="app_surface_variant">#FFEDEDF2</color>
+    <color name="app_divider">#14000000</color>
+    <color name="app_text">#FF111216</color>
+    <color name="app_text_secondary">#FF5E6068</color>
+    <color name="app_text_tertiary">#995E6068</color>
+    <color name="app_scrim">#66000000</color>
+    <color name="app_status_bar">#00000000</color>
+
+    <!-- Status ink: deeper shades on light surfaces so they stay readable. -->
+    <color name="app_success">#FF1B7F37</color>
+    <color name="app_danger">#FFC62828</color>
+    <color name="app_warning">#FFA15C00</color>
+
+    <!-- System accents. -->
+    <color name="accent_blue">#FF0A84FF</color>
+    <color name="accent_green">#FF30D158</color>
+    <color name="accent_red">#FFFF453A</color>
+    <color name="accent_purple">#FFBF5AF2</color>
+    <color name="accent_teal">#FF64D2FF</color>
+    <color name="accent_indigo">#FF5E5CE6</color>
+    <color name="accent_orange">#FFFF9F0A</color>
+
+    <!-- One accent per tool screen: its tile, its intro icon and its primary button. -->
+    <color name="tool_open">#FF0A84FF</color>
+    <color name="tool_scan">#FF1E9E4A</color>
+    <color name="tool_merge">#FFFF3B30</color>
+    <color name="tool_split">#FFAF52DE</color>
+    <color name="tool_organize">#FF0E9AB5</color>
+    <color name="tool_extract_pages">#FF00897B</color>
+    <color name="tool_images_to_pdf">#FF5E5CE6</color>
+    <color name="tool_pdf_to_images">#FF1597D3</color>
+    <color name="tool_extract_text">#FF00838F</color>
+    <color name="tool_create">#FFEE6A00</color>
+    <color name="tool_html_to_pdf">#FFEE6A00</color>
+    <color name="tool_watermark">#FFD81B60</color>
+    <color name="tool_page_numbers">#FF3949AB</color>
+    <color name="tool_fill_form">#FF00695C</color>
+    <color name="tool_image_tools">#FFF4511E</color>
+    <color name="tool_compress">#FF1E9E4A</color>
+    <color name="tool_flatten">#FF8D6E50</color>
+    <color name="tool_encrypt">#FF5E5CE6</color>
+    <color name="tool_decrypt">#FFAF52DE</color>
+    <color name="tool_star">#FFD97706</color>
+    <color name="tool_destructive">#FFFF3B30</color>
+
+    <!-- Document kinds (icon tile + badge). -->
+    <color name="kind_pdf">#FFE53935</color>
+    <color name="kind_word">#FF2B77E5</color>
+    <color name="kind_excel">#FF1E8E5A</color>
+    <color name="kind_ppt">#FFE8722B</color>
+    <color name="kind_hwp">#FF00897B</color>
+    <color name="kind_txt">#FF607D8B</color>
+    <color name="kind_image">#FF8E5AF2</color>
+    <color name="kind_other">#FF8E8E93</color>
+</resources>

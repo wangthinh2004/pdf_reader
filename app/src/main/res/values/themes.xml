@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="Theme.ClearPDF" parent="android:Theme.Material.Light.NoActionBar">
-        <item name="android:windowBackground">@android:color/white</item>
+    <!-- Flat Material 3 theme. Light/dark follow AppCompatDelegate's night mode (Settings → Theme). -->
+    <style name="Theme.ClearPDF" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/accent_blue</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorPrimaryContainer">@color/app_surface_variant</item>
+        <item name="colorOnPrimaryContainer">@color/app_text</item>
+        <item name="colorSecondary">@color/accent_blue</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="colorSecondaryContainer">@color/app_surface_variant</item>
+        <item name="colorOnSecondaryContainer">@color/app_text</item>
+        <item name="colorError">@color/app_danger</item>
+        <item name="android:colorBackground">@color/app_background</item>
+        <item name="colorSurface">@color/app_surface</item>
+        <item name="colorOnSurface">@color/app_text</item>
+        <item name="colorOnSurfaceVariant">@color/app_text_secondary</item>
+        <item name="colorSurfaceContainer">@color/app_surface</item>
+        <item name="colorSurfaceContainerLow">@color/app_surface</item>
+        <item name="colorSurfaceContainerHigh">@color/app_surface</item>
+        <item name="colorSurfaceContainerHighest">@color/app_surface_variant</item>
+        <item name="colorOutline">@color/app_divider</item>
+        <item name="colorOutlineVariant">@color/app_divider</item>
+        <item name="colorControlNormal">@color/app_text_secondary</item>
+        <item name="android:textColorPrimary">@color/app_text</item>
+        <item name="android:textColorSecondary">@color/app_text_secondary</item>
+
+        <item name="android:windowBackground">@color/app_background</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar" tools:targetApi="23">true</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:windowLightStatusBar">@bool/light_system_bars</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">@bool/light_system_bars</item>
         <item name="android:enforceStatusBarContrast" tools:targetApi="29">false</item>
         <item name="android:enforceNavigationBarContrast" tools:targetApi="29">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="27">shortEdges</item>
+
+        <item name="materialCardViewStyle">@style/Widget.ClearPDF.Card</item>
+        <item name="materialButtonStyle">@style/Widget.ClearPDF.Button</item>
+        <item name="bottomNavigationStyle">@style/Widget.ClearPDF.BottomNavigation</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.ClearPDF.Dialog</item>
+        <item name="materialSwitchStyle">@style/Widget.Material3.CompoundButton.MaterialSwitch</item>
+    </style>
+
+    <style name="ThemeOverlay.ClearPDF.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/app_surface</item>
+        <item name="colorSurfaceContainerHigh">@color/app_surface</item>
+        <item name="colorPrimary">@color/accent_blue</item>
     </style>
 </resources>

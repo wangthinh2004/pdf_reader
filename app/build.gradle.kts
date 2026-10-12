@@ -75,6 +75,7 @@ android {
     }
     buildFeatures {
         compose = true
+        viewBinding = true
     }
     testOptions {
         // Plain JVM unit tests (the xlsx model/writer). Android stubs return defaults instead of
@@ -161,6 +162,17 @@ kotlin {
 dependencies {
     testImplementation("junit:junit:4.13.2")
     implementation(libs.androidx.core.ktx)
+    // View-based UI: XML layouts + Fragments + Navigation + Material Components.
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.swiperefreshlayout)
+    implementation(libs.coil)
     implementation(libs.androidx.activity.compose)
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.compose.ui)

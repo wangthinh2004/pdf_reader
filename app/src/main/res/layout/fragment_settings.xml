@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="64dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingEnd="@dimen/screen_padding"
+        android:text="@string/settings_title"
+        android:textAppearance="@style/TextAppearance.ClearPDF.ScreenTitle" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingEnd="@dimen/screen_padding">
+
+            <!-- ── Appearance ── -->
+            <LinearLayout
+                style="@style/ClearPDF.CardContent"
+                android:background="@drawable/bg_card">
+
+                <include
+                    android:id="@+id/appearance_header"
+                    layout="@layout/view_section_header" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/theme_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/theme_auto"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_theme_auto"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_phone_android" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/theme_light"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_theme_light"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_light_mode" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/theme_dark"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_theme_dark"
+                        android:textAllCaps="false"
+                        app:icon="@drawable/ic_dark_mode" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <TextView
+                    android:id="@+id/theme_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:textAppearance="@style/TextAppearance.ClearPDF.Caption" />
+            </LinearLayout>
+
+            <!-- ── Language ── -->
+            <LinearLayout
+                style="@style/ClearPDF.CardContent"
+                android:layout_marginTop="@dimen/section_gap"
+                android:background="@drawable/bg_card">
+
+                <include
+                    android:id="@+id/language_header"
+                    layout="@layout/view_section_header" />
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:scrollbars="none">
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/language_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:selectionRequired="true"
+                        app:singleLine="true"
+                        app:singleSelection="true" />
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- ── Save location ── -->
+            <LinearLayout
+                style="@style/ClearPDF.CardContent"
+                android:layout_marginTop="@dimen/section_gap"
+                android:background="@drawable/bg_card">
+
+                <include
+                    android:id="@+id/save_header"
+                    layout="@layout/view_section_header" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_rounded"
+                    android:backgroundTint="@color/app_surface_variant"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="14dp">
+
+                    <FrameLayout
+                        android:id="@+id/save_icon_tile"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_rounded">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_folder_open"
+                            app:tint="@color/accent_blue" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/save_title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAppearance="@style/TextAppearance.ClearPDF.BodyStrong"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/save_path"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="middle"
+                            android:maxLines="1"
+                            android:textAppearance="@style/TextAppearance.ClearPDF.Caption" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/change_folder"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_change_folder"
+                        app:backgroundTint="@color/tool_extract_text" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/reset_folder"
+                        style="@style/Widget.ClearPDF.Button.Tonal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@string/settings_reset" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── File handling ── -->
+            <LinearLayout
+                style="@style/ClearPDF.CardContent"
+                android:layout_marginTop="@dimen/section_gap"
+                android:background="@drawable/bg_card">
+
+                <include
+                    android:id="@+id/files_header"
+                    layout="@layout/view_section_header" />
+
+                <include
+                    android:id="@+id/auto_compress"
+                    layout="@layout/view_setting_toggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+                <View style="@style/ClearPDF.Divider" />
+
+                <include
+                    android:id="@+id/keep_original"
+                    layout="@layout/view_setting_toggle" />
+
+                <View style="@style/ClearPDF.Divider" />
+
+                <include
+                    android:id="@+id/remember_recents"
+                    layout="@layout/view_setting_toggle" />
+
+                <View style="@style/ClearPDF.Divider" />
+
+                <include
+                    android:id="@+id/keep_local_copies"
+                    layout="@layout/view_setting_toggle" />
+            </LinearLayout>
+
+            <!-- ── Default compression quality ── -->
+            <LinearLayout
+                style="@style/ClearPDF.CardContent"
+                android:layout_marginTop="@dimen/section_gap"
+                android:background="@drawable/bg_card">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/quality_header"
+                        layout="@layout/view_section_header"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:id="@+id/quality_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_rounded_small"
+                        android:paddingStart="10dp"
+                        android:paddingTop="4dp"
+                        android:paddingEnd="10dp"
+                        android:paddingBottom="4dp"
+                        android:textColor="@color/accent_blue"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <com.google.android.material.slider.Slider
+                    android:id="@+id/quality_slider"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:stepSize="0.01"
+                    android:valueFrom="0"
+                    android:valueTo="1"
+                    app:labelBehavior="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_smaller_size"
+                        android:textColor="@color/app_text_tertiary"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/settings_higher_quality"
+                        android:textColor="@color/app_text_tertiary"
+                        android:textSize="11sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ── Personalization ── -->
+            <LinearLayout
+                style="@style/ClearPDF.CardContent"
+                android:layout_marginTop="@dimen/section_gap"
+                android:background="@drawable/bg_card">
+
+                <include
+                    android:id="@+id/personal_header"
+                    layout="@layout/view_section_header" />
+
+                <include
+                    android:id="@+id/show_wallpaper"
+                    layout="@layout/view_setting_toggle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp" />
+
+                <LinearLayout
+                    android:id="@+id/wallpaper_actions"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="46dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/pick_wallpaper"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/settings_bg_gallery"
+                        app:backgroundTint="@color/accent_indigo"
+                        app:icon="@drawable/ic_photo_library" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/reset_wallpaper"
+                        style="@style/Widget.ClearPDF.IconButton.Filled"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="10dp"
+                        android:contentDescription="@string/settings_reset"
+                        app:backgroundTint="@color/app_surface_variant"
+                        app:icon="@drawable/ic_refresh" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/replay_onboarding"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/settings_replay_onboarding"
+                    app:backgroundTint="@color/accent_purple"
+                    app:icon="@drawable/ic_auto_awesome" />
+            </LinearLayout>
+
+            <!-- ── About ── -->
+            <LinearLayout
+                style="@style/ClearPDF.CardContent"
+                android:layout_marginTop="@dimen/section_gap"
+                android:background="@drawable/bg_card"
+                android:gravity="center_horizontal"
+                android:padding="24dp">
+
+                <FrameLayout
+                    android:id="@+id/about_icon_tile"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/bg_rounded">
+
+                    <ImageView
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_info"
+                        app:tint="@color/accent_blue" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="@string/home_title"
+                    android:textColor="@color/app_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/settings_version"
+                    android:textColor="@color/app_text_secondary"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@string/settings_made_by"
+                    android:textColor="@color/app_text_secondary"
+                    android:textSize="13sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/star_github"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/settings_star_github"
+                    app:backgroundTint="@color/tool_star"
+                    app:icon="@drawable/ic_star" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:text="@string/settings_open_source"
+                    android:textColor="@color/app_text_tertiary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <!-- ── Office engine (optional, powered by LibreOffice) ── -->
+            <include
+                android:id="@+id/office_engine"
+                layout="@layout/view_office_engine_section"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/section_gap" />
+
+            <!-- ── Licences ── -->
+            <LinearLayout
+                android:id="@+id/licenses_card"
+                style="@style/ClearPDF.CardContent"
+                android:layout_marginTop="@dimen/section_gap"
+                android:background="@drawable/bg_card">
+
+                <include
+                    android:id="@+id/licenses_header"
+                    layout="@layout/view_section_header" />
+
+                <LinearLayout
+                    android:id="@+id/licenses"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical" />
+
+                <View style="@style/ClearPDF.Divider" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="4sp"
+                    android:text="@string/settings_license_notice"
+                    android:textColor="@color/app_text_tertiary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

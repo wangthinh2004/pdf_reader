@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A tool in a section grid: accent icon, name and one-line description on an accent wash. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tile"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    android:background="@drawable/bg_rounded"
+    android:foreground="?attr/selectableItemBackground"
+    android:minHeight="120dp"
+    android:orientation="vertical"
+    android:padding="14dp">
+
+    <FrameLayout
+        android:id="@+id/icon_tile"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:background="@drawable/bg_rounded">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="23dp"
+            android:layout_height="23dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:minHeight="10dp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/app_text"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/app_text_secondary"
+        android:textSize="11.5sp" />
+</LinearLayout>

@@ -25,6 +25,12 @@ gpuimage = "2.1.0"
 exifinterface = "1.3.7"
 mlkitSubjectSegmentation = "16.0.0-beta1"
 
+appcompat = "1.7.0"
+material = "1.12.0"
+fragment = "1.8.5"
+recyclerview = "1.3.2"
+swiperefresh = "1.1.0"
+
 playFeatureDelivery = "2.1.0"
 work = "2.10.1"
 xz = "1.10"
@@ -72,6 +78,18 @@ tesseract4android = { group = "cz.adaptech.tesseract4android", name = "tesseract
 play-feature-delivery-ktx = { group = "com.google.android.play", name = "feature-delivery-ktx", version.ref = "playFeatureDelivery" }
 androidx-work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "work" }
 xz = { group = "org.tukaani", name = "xz", version.ref = "xz" }
+
+# View-based UI (XML layouts)
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment" }
+androidx-recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+androidx-lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefresh" }
+coil = { group = "io.coil-kt.coil3", name = "coil", version.ref = "coil" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

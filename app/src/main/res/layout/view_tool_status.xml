@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Result / error message with an optional action (e.g. Open) and a dismiss button. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/section_gap"
+    android:background="@drawable/bg_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="14dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="8dp"
+    android:paddingBottom="12dp"
+    android:visibility="gone">
+
+    <FrameLayout
+        android:id="@+id/icon_tile"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:background="@drawable/bg_pill">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="1"
+        android:lineSpacingExtra="3sp"
+        android:textColor="@color/app_text"
+        android:textSize="13sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/action"
+        style="@style/Widget.ClearPDF.Button.Text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dismiss"
+        style="@style/Widget.ClearPDF.IconButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/close"
+        android:visibility="gone"
+        app:icon="@drawable/ic_close"
+        app:iconSize="16dp" />
+</LinearLayout>

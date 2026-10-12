@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ── Surfaces ── -->
+
+    <style name="Widget.ClearPDF.Card" parent="Widget.Material3.CardView.Filled">
+        <item name="cardBackgroundColor">@color/app_surface</item>
+        <item name="cardCornerRadius">@dimen/card_radius</item>
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <!-- A card's contents: vertical stack with the standard inner padding. -->
+    <style name="ClearPDF.CardContent" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:padding">@dimen/card_padding</item>
+    </style>
+
+    <style name="ClearPDF.Divider" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_marginTop">6dp</item>
+        <item name="android:layout_marginBottom">6dp</item>
+        <item name="android:background">@color/app_divider</item>
+    </style>
+
+    <!-- ── Buttons ── -->
+
+    <style name="Widget.ClearPDF.Button" parent="Widget.Material3.Button">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+    </style>
+
+    <style name="Widget.ClearPDF.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:minHeight">48dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="cornerRadius">24dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="backgroundTint">@color/app_surface_variant</item>
+        <item name="android:textColor">@color/app_text</item>
+        <item name="iconTint">@color/app_text</item>
+    </style>
+
+    <style name="Widget.ClearPDF.Button.Text" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.ClearPDF.IconButton" parent="Widget.Material3.Button.IconButton">
+        <item name="iconTint">@color/app_text</item>
+        <item name="iconSize">24dp</item>
+    </style>
+
+    <style name="Widget.ClearPDF.IconButton.Filled" parent="Widget.Material3.Button.IconButton.Filled.Tonal">
+        <item name="backgroundTint">@color/app_surface</item>
+        <item name="iconTint">@color/app_text</item>
+        <item name="iconSize">22dp</item>
+    </style>
+
+    <style name="Widget.ClearPDF.Chip" parent="Widget.Material3.Chip.Filter">
+        <item name="chipCornerRadius">18dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="chipStrokeWidth">0dp</item>
+        <item name="chipBackgroundColor">@color/chip_background</item>
+        <item name="android:textColor">@color/chip_text</item>
+        <item name="checkedIconVisible">false</item>
+        <item name="chipIconTint">@color/chip_text</item>
+    </style>
+
+    <!-- ── Navigation ── -->
+
+    <style name="Widget.ClearPDF.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="backgroundTint">@color/app_surface</item>
+        <item name="itemIconTint">@color/bottom_nav_item</item>
+        <item name="itemTextColor">@color/bottom_nav_item</item>
+        <item name="itemActiveIndicatorStyle">@style/ClearPDF.BottomNavIndicator</item>
+        <item name="labelVisibilityMode">labeled</item>
+    </style>
+
+    <style name="ClearPDF.BottomNavIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/bottom_nav_indicator</item>
+    </style>
+
+    <!-- ── Text ── -->
+
+    <style name="TextAppearance.ClearPDF.ScreenTitle" parent="TextAppearance.Material3.HeadlineSmall">
+        <item name="android:textColor">@color/app_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="TextAppearance.ClearPDF.ToolbarTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textColor">@color/app_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="TextAppearance.ClearPDF.SectionTitle" parent="TextAppearance.Material3.TitleMedium">
+        <item name="android:textColor">@color/app_text</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="TextAppearance.ClearPDF.SectionLabel" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textColor">@color/app_text_secondary</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
+    <style name="TextAppearance.ClearPDF.Body" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/app_text</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="TextAppearance.ClearPDF.BodyStrong" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:textColor">@color/app_text</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextAppearance.ClearPDF.Caption" parent="TextAppearance.Material3.BodySmall">
+        <item name="android:textColor">@color/app_text_secondary</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="TextAppearance.ClearPDF.Badge" parent="TextAppearance.Material3.LabelSmall">
+        <item name="android:textSize">9sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>
