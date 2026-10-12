@@ -7,8 +7,7 @@
 
     <fragment
         android:id="@+id/onboarding"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="onboarding" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.onboarding.OnboardingFragment">
     </fragment>
 
     <fragment
@@ -28,8 +27,7 @@
 
     <fragment
         android:id="@+id/scan"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="scan_document" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.scan.ScanFragment">
     </fragment>
 
     <fragment

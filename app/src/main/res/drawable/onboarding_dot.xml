@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Page indicator dot: wide accent pill when selected, small neutral dot otherwise. -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_selected="true">
+        <layer-list>
+            <item android:gravity="center" android:width="16dp" android:height="8dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="@color/accent_blue" />
+                    <corners android:radius="4dp" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+    <item>
+        <layer-list>
+            <item android:gravity="center" android:width="8dp" android:height="8dp">
+                <shape android:shape="oval">
+                    <solid android:color="@color/app_text_tertiary" />
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

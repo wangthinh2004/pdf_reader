@@ -95,33 +95,6 @@ class ComposeBridgeFragment : Fragment() {
     private fun Route(route: String, uri: android.net.Uri?, backdrop: LayerBackdrop) {
         val context = LocalContext.current
         when (route) {
-            "onboarding" -> {
-                var locale by remember { mutableStateOf(OnboardingManager.getSelectedLocale(context)) }
-                var themeMode by remember { mutableIntStateOf(AppSettingsManager.getThemeMode(context)) }
-                var showWallpaper by remember { mutableStateOf(AppSettingsManager.getShowWallpaper(context)) }
-                var customWallpaper by remember { mutableStateOf(AppSettingsManager.getCustomWallpaper(context)) }
-                val activity = requireActivity() as MainActivity
-                OnboardingScreen(
-                    backdrop = backdrop,
-                    selectedLocale = locale,
-                    onLocaleSelected = { code ->
-                        locale = code
-                        activity.changeLocale(code)
-                    },
-                    themeMode = themeMode,
-                    onThemeModeChanged = { themeMode = it; activity.setThemeMode(it) },
-                    showWallpaper = showWallpaper,
-                    onShowWallpaperChanged = {
-                        showWallpaper = it
-                        AppSettingsManager.setShowWallpaper(context, it)
-                        activity.refreshWallpaper()
-                    },
-                    hasCustomWallpaper = customWallpaper != null,
-                    onCustomWallpaperChanged = { customWallpaper = it; activity.refreshWallpaper() },
-                    onFinish = { activity.finishOnboarding() }
-                )
-            }
-            "scan_document" -> ScanDocumentScreen(backdrop = backdrop, viewModel = viewModel<ScanViewModel>(), onBack = ::back)
             "pdf_viewer" -> {
                 val vm: PdfViewerViewModel = viewModel(factory = factory { PdfViewerViewModel(OpenPdfUseCase(PdfServiceLocator.pdfViewer)) })
                 LaunchedEffect(uri) { if (uri != null) vm.openPdf(context, uri) }
