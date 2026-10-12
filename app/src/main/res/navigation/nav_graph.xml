@@ -44,8 +44,7 @@
 
     <fragment
         android:id="@+id/image_editor"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="image_editor" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.imageeditor.ImageEditorFragment">
         <argument android:name="uri" android:defaultValue="@null" app:argType="string" app:nullable="true" />
     </fragment>
 

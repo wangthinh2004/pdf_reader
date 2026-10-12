@@ -26,19 +26,6 @@ ClearPDF uses open-source components and keeps their notices with the project. R
   under `kr.dogfoot.hwplib.org.apache.poi` (also Apache-2.0).
 - Notice practice: keep the Apache 2.0 license text available with redistributed builds.
 
-## AndroidLiquidGlass / Backdrop
-
-- Component: `AndroidLiquidGlass` / the local `backdrop` module
-- License: Apache License 2.0 (as attributed in the Settings screen)
-- Use: the app's translucent glass surfaces, backdrop effects, and shared UI components.
-
-## AndroidLiquidGlassView
-
-- Component: `AndroidLiquidGlassView` by Donny Yale (https://github.com/QmDeve/AndroidLiquidGlassView), Copyright (c) 2025-2026 Donny Yale
-- License: MIT License
-- Use: the velocity squash-and-stretch technique from its `LiquidTracker` was re-implemented in Compose as `ui/components/LiquidStretch.kt` (`Modifier.liquidStretch`), used by the slider, toggle and segmented-control thumbs. No library code is bundled.
-- Notice practice: keep this copyright line and the MIT permission notice with redistributed source/builds.
-
 ## Google ML Kit Text Recognition
 
 - Artifact: `com.google.mlkit:text-recognition:16.0.1`
@@ -57,7 +44,7 @@ ClearPDF uses open-source components and keeps their notices with the project. R
 
 - Project: `Karna14314/Pdf_Tools` (https://github.com/Karna14314/Pdf_Tools)
 - License: Apache License 2.0
-- Use: informed ClearPDF's on-device tool set (e.g. PDF-to-Images export). ClearPDF's implementations are original code written against the app's own architecture and `backdrop` UI; no source was copied. This acknowledgement is provided in good faith for the shared feature direction.
+- Use: informed ClearPDF's on-device tool set (e.g. PDF-to-Images export). ClearPDF's implementations are original code written against the app's own architecture; no source was copied. This acknowledgement is provided in good faith for the shared feature direction.
 
 The app does not bundle GPL or LGPL components for document rendering. If a future dependency changes that, its license and redistribution obligations must be reviewed before release. (The optional LibreOffice engine below is not bundled in the APK; it is installed only on request.)
 
@@ -85,10 +72,9 @@ The app does not bundle GPL or LGPL components for document rendering. If a futu
 
 - Source: https://github.com/T8RIN/ImageToolbox — Copyright (c) 2026 T8RIN (Malik Mukhametzyanov)
 - License: Apache License 2.0
-- Use: the image editor's cropper (`imageeditor/thirdparty/cropper`, from `lib/cropper` minus
-  its widgets), gesture helpers (`thirdparty/gesture`), image-scope helpers (`thirdparty/image`),
-  the perspective cropper (`thirdparty/freecorners`, from `lib/opencv-tools/free_corners_crop`
-  with OpenCV's `warpPerspective` replaced by `Matrix.setPolyToPoly`), and draw-engine code
+- Use: the perspective-crop warp (from `lib/opencv-tools/free_corners_crop`, with OpenCV's
+  `warpPerspective` replaced by `Matrix.setPolyToPoly`, now in `imageeditor/engine/EditRenderer.kt`)
+  and draw-engine code
   (`imageeditor/engine/draw`: shape/arrow geometry from `PathHelper.kt`, paint set-up from
   `DrawUtils.kt`, `FloodFill.kt`). Adjustment/preset choices and the watermark placement model
   follow `feature/filters` and `feature/watermarking`.

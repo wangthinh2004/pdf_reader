@@ -104,13 +104,12 @@ ClearPDF has no document-upload service. User-selected files are processed on-de
 
 ## Technology
 
-- Kotlin, Android SDK, and Jetpack Compose.
+- Kotlin and the Android SDK, with XML layouts, Fragments, Jetpack Navigation and Material Components.
 - Android PdfRenderer and PdfBox-Android for PDF rendering and operations.
 - Bundled on-device ML Kit text recognition and Tesseract OCR fallback.
 - ML Kit Document Scanner for capture and page correction.
 - GPUImage and local image-processing code for image tools.
 - Optional LibreOffice-based Office engine; FOSS builds download it on request, while Play builds use on-demand feature delivery.
-- The local <code>backdrop</code> module and AndroidLiquidGlass components provide the glass surfaces and motion.
 
 ## Build and run from source
 
@@ -147,7 +146,6 @@ For a Play bundle, use <code>./gradlew :app:bundlePlayRelease</code>. The Play b
 | <code>app/</code> | Android app, UI, document viewers, tools, and image editor |
 | <code>pdf-core/</code> | PDF operations and rendering support |
 | <code>ocr-core/</code> | On-device OCR |
-| <code>backdrop/</code> | Shared liquid-glass backdrop effects |
 | <code>office_engine/</code> | Optional Play feature module, included for bundle builds |
 
 To run the app from Android Studio, open the repository root, sync Gradle, and run the <code>app</code> module.
@@ -192,8 +190,6 @@ Android 6.0 (API 23) or newer. Features provided by Google Play services may not
 
 ## Credits
 
-- [AndroidLiquidGlass](https://github.com/Kyant0/AndroidLiquidGlass) by Kyant0 for backdrop and glass effects (Apache-2.0).
-- [AndroidLiquidGlassView](https://github.com/QmDeve/AndroidLiquidGlassView) by QmDeve for motion techniques (MIT; see the project notices for the local implementation details).
 - [PdfBox-Android](https://github.com/TomRoush/PdfBox-Android) by Tom Roush for PDF operations (Apache-2.0).
 - [ImageToolbox](https://github.com/T8RIN/ImageToolbox) by T8RIN for adapted image-editor components (Apache-2.0).
 - [GPUImage for Android](https://github.com/cats-oss/android-gpuimage) for image filters (Apache-2.0).

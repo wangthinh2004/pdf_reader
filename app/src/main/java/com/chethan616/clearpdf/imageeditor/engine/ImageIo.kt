@@ -60,7 +60,10 @@ object ImageIo {
         val h = o.outHeight
         if (w <= 0 || h <= 0) return null
         var sample = 1
-        while (max(w, h) / sample > maxDim * 2 || (w.toLong() / sample) * (h.toLong() / sample) > maxPixels * 4) sample *= 2
+        // `maxPixels * 4` overflowed for the default Long.MAX_VALUE, and the loop then doubled
+        // `sample` until it wrapped to zero.
+        val pixelBudget = if (maxPixels > Long.MAX_VALUE / 4) Long.MAX_VALUE else maxPixels * 4
+        while (sample < (1 shl 16) && (max(w, h) / sample > maxDim * 2 || (w.toLong() / sample) * (h.toLong() / sample) > pixelBudget)) sample *= 2
         val opts = BitmapFactory.Options().apply {
             inSampleSize = sample
             inPreferredConfig = Bitmap.Config.ARGB_8888

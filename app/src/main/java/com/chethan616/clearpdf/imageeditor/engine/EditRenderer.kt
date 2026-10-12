@@ -8,16 +8,8 @@ import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
 import android.graphics.Rect
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.asAndroidBitmap
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.unit.Density
-import androidx.compose.ui.unit.LayoutDirection
 import com.chethan616.clearpdf.imageeditor.engine.draw.ShapePaths
 import com.chethan616.clearpdf.imageeditor.engine.draw.StrokeRenderer
-import com.chethan616.clearpdf.imageeditor.thirdparty.cropper.crop.CropAgent
-import com.chethan616.clearpdf.imageeditor.thirdparty.cropper.model.RectCropShape
-import com.chethan616.clearpdf.imageeditor.thirdparty.freecorners.FreeCrop
 import kotlin.math.abs
 import kotlin.math.cos
 import kotlin.math.max
@@ -33,13 +25,10 @@ import kotlin.math.sin
  */
 class EditRenderer(private val context: Context) {
 
-    private val cropAgent = CropAgent()
-    private val density = Density(context)
-
     fun apply(src: Bitmap, op: EditOp, resolutionScale: Float): Bitmap = when (op) {
         is TransformOp -> transform(src, op)
         is CropOp -> crop(src, op)
-        is PerspectiveOp -> FreeCrop.crop(src, op.corners.map { Offset(it.x * src.width, it.y * src.height) })
+        is PerspectiveOp -> perspective(src, op.corners.map { Offset(it.x * src.width, it.y * src.height) })
         is AdjustOp -> AdjustRenderer.apply(context, src, op.values).let { if (it === src) src.copy(Bitmap.Config.ARGB_8888, true) else it }
         is FilterOp -> FilterPreset.apply(context, src, op.preset, op.intensity)
         is DrawOp -> StrokeRenderer.render(src, op.strokes)
@@ -82,18 +71,34 @@ class EditRenderer(private val context: Context) {
         val b = (op.rect.bottom * src.height).roundToInt().coerceIn(t + 1, src.height)
         val out = Bitmap.createBitmap(r - l, b - t, Bitmap.Config.ARGB_8888)
         Canvas(out).drawBitmap(src, Rect(l, t, r, b), Rect(0, 0, out.width, out.height), Paint(Paint.FILTER_BITMAP_FLAG))
-        val outline = op.outline ?: return out
-        if (outline is RectCropShape) return out
-        // Shape masks (circle, rounded, polygon, heart…) via the ported cropper's CropAgent.
-        val masked = cropAgent.crop(
-            imageBitmap = out.asImageBitmap(),
-            cropRect = androidx.compose.ui.geometry.Rect(0f, 0f, out.width.toFloat(), out.height.toFloat()),
-            cropOutline = outline,
-            layoutDirection = LayoutDirection.Ltr,
-            density = density
-        ).asAndroidBitmap()
-        if (masked !== out) out.recycle()
+        val mask = op.mask ?: return out
+        // Shape masks (circle, rounded, polygon, heart…): keep only the pixels inside the outline.
+        val masked = Bitmap.createBitmap(out.width, out.height, Bitmap.Config.ARGB_8888)
+        val c = Canvas(masked)
+        val paint = Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG)
+        c.drawPath(mask.path(out.width.toFloat(), out.height.toFloat()), paint)
+        paint.xfermode = android.graphics.PorterDuffXfermode(android.graphics.PorterDuff.Mode.SRC_IN)
+        c.drawBitmap(out, 0f, 0f, paint)
+        out.recycle()
         return masked
+    }
+
+    /**
+     * Warps the quadrilateral [points] (TL, TR, BR, BL in pixels) into an upright rectangle whose
+     * size is the shorter of each pair of opposite edges.
+     */
+    private fun perspective(src: Bitmap, points: List<Offset>): Bitmap {
+        if (points.size < 4) return src.copy(Bitmap.Config.ARGB_8888, true)
+        val (tl, tr, br, bl) = points
+        val width = max(1, minOf((tr - tl).getDistance(), (br - bl).getDistance()).roundToInt())
+        val height = max(1, minOf((bl - tl).getDistance(), (br - tr).getDistance()).roundToInt())
+        val srcPts = floatArrayOf(tl.x, tl.y, tr.x, tr.y, br.x, br.y, bl.x, bl.y)
+        val dstPts = floatArrayOf(0f, 0f, width.toFloat(), 0f, width.toFloat(), height.toFloat(), 0f, height.toFloat())
+        val matrix = android.graphics.Matrix()
+        if (!matrix.setPolyToPoly(srcPts, 0, dstPts, 0, 4)) return src.copy(Bitmap.Config.ARGB_8888, true)
+        val out = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+        Canvas(out).drawBitmap(src, matrix, Paint(Paint.ANTI_ALIAS_FLAG or Paint.FILTER_BITMAP_FLAG or Paint.DITHER_FLAG))
+        return out
     }
 
     private fun background(src: Bitmap, op: BackgroundOp): Bitmap {

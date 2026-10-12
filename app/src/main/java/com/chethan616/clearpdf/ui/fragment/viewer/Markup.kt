@@ -122,18 +122,27 @@ fun textRect(blocks: List<OcrTextBlock>, blockId: String, start: Int, end: Int):
 }
 
 fun textRangeRect(block: OcrTextBlock, start: Int, end: Int): RectF {
+    val (left, right) = textRangeEdges(block, start, end)
+    return RectF(left, block.top, right, block.bottom)
+}
+
+/**
+ * Normalised left and right edges of characters [start, end) of [block]. Character geometry is
+ * normally exact; missing edges are interpolated across the block so a partial glyph map still
+ * yields a range-sized markup instead of the whole line.
+ */
+fun textRangeEdges(block: OcrTextBlock, start: Int, end: Int): Pair<Float, Float> {
     val len = block.text.length
     val s = start.coerceIn(0, len)
     val e = (if (end < 0) len else end).coerceIn(s, len)
-    if (s >= e) return RectF(block.left, block.top, block.right, block.bottom)
-    // Character geometry is normally exact; interpolate any missing edges across the block.
+    if (s >= e) return block.left to block.right
     fun charLeft(i: Int) = block.charLefts.getOrNull(i)?.takeIf(Float::isFinite)
         ?: (block.left + (block.right - block.left) * i / len.coerceAtLeast(1))
     fun charRight(i: Int) = block.charRights.getOrNull(i)?.takeIf(Float::isFinite)
         ?: (block.left + (block.right - block.left) * (i + 1) / len.coerceAtLeast(1))
     val left = charLeft(s).coerceIn(block.left, block.right)
     val right = charRight(e - 1).coerceIn(block.left, block.right).coerceAtLeast(left)
-    return RectF(left, block.top, right, block.bottom)
+    return left to right
 }
 
 /** The y of an underline / strike-through for a text range rectangle. */

@@ -4,8 +4,9 @@ import android.app.Application
 import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
+import com.chethan616.clearpdf.imageeditor.engine.Offset
+import com.chethan616.clearpdf.imageeditor.engine.Rect
+import com.chethan616.clearpdf.imageeditor.engine.CropMask
 import androidx.core.content.FileProvider
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -32,7 +33,6 @@ import com.chethan616.clearpdf.imageeditor.engine.TextOp
 import com.chethan616.clearpdf.imageeditor.engine.TransformOp
 import com.chethan616.clearpdf.imageeditor.engine.WatermarkOp
 import com.chethan616.clearpdf.imageeditor.engine.WatermarkParams
-import com.chethan616.clearpdf.imageeditor.thirdparty.cropper.model.CropOutline
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -389,12 +389,12 @@ class ImageEditorViewModel(app: Application) : AndroidViewModel(app) {
     fun resetCrop() = updateCrop({ it.copy(transform = TransformOp(), aspectIndex = 0, outlineIndex = 0, perspective = false) }, true)
     fun triggerCrop() = updateCrop({ it.copy(trigger = true) }, false)
 
-    fun onCropped(rect: Rect, outline: CropOutline?) {
+    fun onCropped(rect: Rect, mask: CropMask?) {
         val s = _state.value.crop ?: return
         val ops = live.toMutableList()
         if (!s.transform.isIdentity) ops += s.transform
         val full = rect.left < 0.002f && rect.top < 0.002f && rect.right > 0.998f && rect.bottom > 0.998f
-        if (!full || outline != null) ops += CropOp(rect, outline)
+        if (!full || mask != null) ops += CropOp(rect, mask)
         finishCrop(ops)
     }
 

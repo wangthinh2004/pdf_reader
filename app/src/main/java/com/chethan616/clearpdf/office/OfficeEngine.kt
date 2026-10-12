@@ -13,7 +13,7 @@ object OfficeEngine {
      * One-shot request from the viewer's "Get it" hint: Settings consumes it on entry and scrolls
      * its Office engine section into view, so the user watches the install they just started.
      */
-    val focusSettingsSection = androidx.compose.runtime.mutableStateOf(false)
+    val focusSettingsSection = kotlinx.coroutines.flow.MutableStateFlow(false)
 
 
     private const val PREFS = "office_engine"

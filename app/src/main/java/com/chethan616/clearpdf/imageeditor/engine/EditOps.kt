@@ -1,9 +1,6 @@
 package com.chethan616.clearpdf.imageeditor.engine
 
 import android.graphics.Bitmap
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Rect
-import com.chethan616.clearpdf.imageeditor.thirdparty.cropper.model.CropOutline
 
 /**
  * One non-destructive step of an edit. The editor keeps an ordered list of these and replays
@@ -29,7 +26,7 @@ data class TransformOp(
 /** Rectangular crop (normalised) with an optional shape mask (circle, rounded, polygon…). */
 data class CropOp(
     val rect: Rect,
-    val outline: CropOutline? = null
+    val mask: CropMask? = null
 ) : EditOp
 
 /** Four corners (TL, TR, BR, BL; normalised) warped into an upright rectangle. */

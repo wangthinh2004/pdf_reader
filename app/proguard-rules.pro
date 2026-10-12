@@ -13,11 +13,8 @@
 -optimizationpasses 5
 -allowaccessmodification
 
-# Compose already ships its own ProGuard rules via consumer-rules.
-# Only keep what R8 can't infer automatically.
--keepclassmembers class * {
-    @androidx.compose.runtime.Composable <methods>;
-}
+# Fragments named in the navigation graph and custom views inflated from XML are kept by the
+# rules AndroidX Navigation / AAPT generate, so nothing extra is needed here.
 
 # Remove logging in release
 -assumenosideeffects class android.util.Log {

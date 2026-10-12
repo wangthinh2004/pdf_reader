@@ -25,7 +25,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "ClearPDF"
-include(":backdrop")
 include(":pdf-core")
 include(":ocr-core")
 include(":app")
