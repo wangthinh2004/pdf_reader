@@ -95,11 +95,6 @@ class ComposeBridgeFragment : Fragment() {
     private fun Route(route: String, uri: android.net.Uri?, backdrop: LayerBackdrop) {
         val context = LocalContext.current
         when (route) {
-            "spreadsheet" -> {
-                val vm: SpreadsheetViewModel = viewModel()
-                LaunchedEffect(uri) { if (uri != null) vm.load(context, uri) }
-                SpreadsheetViewerScreen(backdrop = backdrop, viewModel = vm, onBack = ::back, onOpenPdf = ::viewPdf)
-            }
             "image_editor" -> {
                 val vm: ImageEditorViewModel = viewModel()
                 LaunchedEffect(uri) { if (uri != null) vm.load(context, uri) }

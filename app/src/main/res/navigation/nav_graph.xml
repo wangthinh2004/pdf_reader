@@ -38,8 +38,7 @@
 
     <fragment
         android:id="@+id/spreadsheet"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="spreadsheet" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.sheet.SpreadsheetFragment">
         <argument android:name="uri" android:defaultValue="@null" app:argType="string" app:nullable="true" />
     </fragment>
 

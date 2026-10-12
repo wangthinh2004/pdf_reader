@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_save"
+        android:icon="@drawable/ic_check"
+        android:title="@string/sheet_save"
+        app:iconTint="@color/accent_blue"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search"
+        android:title="@string/viewer_find"
+        app:iconTint="@color/app_text"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_edit"
+        android:title="@string/sheet_edit"
+        app:iconTint="@color/app_text"
+        app:showAsAction="always" />
+    <item android:id="@+id/action_share" android:title="@string/viewer_share_document" />
+    <item android:id="@+id/action_export_pdf" android:title="@string/sheet_export_pdf" />
+    <item android:id="@+id/action_save_as" android:title="@string/sheet_save_as" />
+</menu>
