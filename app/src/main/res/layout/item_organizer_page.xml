@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A page in the organizer: select mark, thumbnail, labels, rotate, delete, drag handle. -->
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:cardCornerRadius="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/check"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:importantForAccessibility="no" />
+
+        <FrameLayout
+            android:layout_width="54dp"
+            android:layout_height="72dp"
+            android:layout_marginStart="10dp"
+            android:background="@drawable/bg_rounded_small"
+            android:backgroundTint="@color/app_surface_variant">
+
+            <ImageView
+                android:id="@+id/thumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/app_text"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/source"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+                android:textSize="11sp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rotate"
+            style="@style/Widget.ClearPDF.IconButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/organize_rotate"
+            app:icon="@drawable/ic_rotate_right"
+            app:iconSize="18dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/delete"
+            style="@style/Widget.ClearPDF.IconButton"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/delete"
+            app:icon="@drawable/ic_delete"
+            app:iconSize="18dp"
+            app:iconTint="@color/accent_red" />
+
+        <ImageView
+            android:id="@+id/handle"
+            android:layout_width="32dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/organize_drag"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:src="@drawable/ic_drag_indicator"
+            app:tint="@color/app_text_secondary" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/hero"
+        layout="@layout/view_tool_hero" />
+
+    <include
+        android:id="@+id/file"
+        layout="@layout/view_tool_file" />
+
+    <LinearLayout
+        android:id="@+id/options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/mode"
+            layout="@layout/view_segment_two" />
+
+        <include
+            android:id="@+id/pages"
+            layout="@layout/view_page_picker" />
+
+        <TextView
+            android:id="@+id/split_all_hint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/section_gap"
+            android:background="@drawable/bg_card"
+            android:padding="14dp"
+            android:text="@string/split_all_hint"
+            android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/run"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/section_gap"
+            android:minHeight="52dp" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/status"
+        layout="@layout/view_tool_status" />
+
+    <include
+        android:id="@+id/open_output"
+        layout="@layout/view_tool_open_output" />
+</LinearLayout>

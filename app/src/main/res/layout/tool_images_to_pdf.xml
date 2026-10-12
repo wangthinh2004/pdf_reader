@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/images_add"
+            app:icon="@drawable/ic_add_photo_alternate" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/clear"
+            style="@style/Widget.ClearPDF.Button.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/viewer_clear"
+            android:textColor="@color/app_danger"
+            android:visibility="gone"
+            app:icon="@drawable/ic_delete_outline"
+            app:iconTint="@color/app_danger" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/page_size"
+        layout="@layout/view_segment_two" />
+
+    <TextView
+        android:id="@+id/hint"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:text="@string/images_hint"
+        android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+        android:textSize="13sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" />
+
+    <include
+        android:id="@+id/status"
+        layout="@layout/view_tool_status" />
+
+    <include
+        android:id="@+id/open_output"
+        layout="@layout/view_tool_open_output" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_gap"
+        android:minHeight="52dp"
+        app:icon="@drawable/ic_picture_as_pdf" />
+</LinearLayout>

@@ -55,14 +55,12 @@
 
     <fragment
         android:id="@+id/merge_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="merge_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.MergePdfFragment">
     </fragment>
 
     <fragment
         android:id="@+id/split_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="split_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.SplitPdfFragment">
     </fragment>
 
     <fragment
@@ -72,85 +70,71 @@
 
     <fragment
         android:id="@+id/create_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="create_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.CreatePdfFragment">
     </fragment>
 
     <fragment
         android:id="@+id/organize_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="organize_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.PageOrganizerFragment">
     </fragment>
 
     <fragment
         android:id="@+id/extract_text"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="extract_text" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.ExtractTextFragment">
     </fragment>
 
     <fragment
         android:id="@+id/images_to_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="images_to_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.ImagesToPdfFragment">
     </fragment>
 
     <fragment
         android:id="@+id/decrypt_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="decrypt_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.DecryptPdfFragment">
     </fragment>
 
     <fragment
         android:id="@+id/encrypt_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="encrypt_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.EncryptPdfFragment">
     </fragment>
 
     <fragment
         android:id="@+id/pdf_to_images"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="pdf_to_images" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.PdfToImagesFragment">
     </fragment>
 
     <fragment
         android:id="@+id/watermark_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="watermark_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.WatermarkPdfFragment">
     </fragment>
 
     <fragment
         android:id="@+id/extract_pages"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="extract_pages" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.ExtractPagesFragment">
     </fragment>
 
     <fragment
         android:id="@+id/page_numbers"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="page_numbers" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.PageNumbersFragment">
     </fragment>
 
     <fragment
         android:id="@+id/flatten_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="flatten_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.FlattenPdfFragment">
     </fragment>
 
     <fragment
         android:id="@+id/image_tools"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="image_tools" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.ImageToolsFragment">
     </fragment>
 
     <fragment
         android:id="@+id/html_to_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="html_to_pdf" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.HtmlToPdfFragment">
     </fragment>
 
     <fragment
         android:id="@+id/fill_form"
-        android:name="com.chethan616.clearpdf.ui.fragment.ComposeBridgeFragment">
-        <argument android:name="route" android:defaultValue="fill_form" app:argType="string" />
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.FillFormFragment">
     </fragment>
 </navigation>

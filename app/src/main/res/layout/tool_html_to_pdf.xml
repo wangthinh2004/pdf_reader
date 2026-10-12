@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        style="@style/ClearPDF.CardContent"
+        android:background="@drawable/bg_card"
+        android:padding="24dp">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/view_section_header" />
+
+        <include
+            android:id="@+id/mode"
+            layout="@layout/view_segment_two" />
+
+        <LinearLayout
+            android:id="@+id/url_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/html_to_pdf_url_desc"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+                android:textSize="13sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/url_layout"
+                style="@style/Widget.ClearPDF.TextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:startIconDrawable="@drawable/ic_language">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/url"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/html_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/html_to_pdf_desc"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+                android:textSize="13sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/load_file"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/html_to_pdf_load_file"
+                app:icon="@drawable/ic_file_open" />
+
+            <TextView
+                android:id="@+id/source_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="middle"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/html_layout"
+                style="@style/Widget.ClearPDF.TextField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/html"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="top|start"
+                    android:inputType="textMultiLine|textNoSuggestions"
+                    android:maxLines="14"
+                    android:minLines="7"
+                    android:scrollbars="vertical"
+                    android:textSize="13sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_gap"
+        android:minHeight="52dp" />
+
+    <include
+        android:id="@+id/status"
+        layout="@layout/view_tool_status" />
+
+    <include
+        android:id="@+id/open_output"
+        layout="@layout/view_tool_open_output" />
+</LinearLayout>

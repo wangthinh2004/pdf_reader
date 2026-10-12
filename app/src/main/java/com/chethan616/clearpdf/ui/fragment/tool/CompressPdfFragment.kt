@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import com.chethan616.clearpdf.R
 import com.chethan616.clearpdf.data.repository.PdfServiceLocator
 import com.chethan616.clearpdf.databinding.ToolCompressBinding
@@ -18,9 +17,6 @@ import com.chethan616.clearpdf.ui.common.tint
 import com.chethan616.clearpdf.ui.common.tintBackground
 import com.chethan616.clearpdf.ui.viewmodel.CompressPdfUiState
 import com.chethan616.clearpdf.ui.viewmodel.CompressPdfViewModel
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class CompressPdfFragment : ToolFragment<ToolCompressBinding>() {
 
@@ -33,8 +29,6 @@ class CompressPdfFragment : ToolFragment<ToolCompressBinding>() {
     private val picker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri ->
         if (uri != null) vm.onSelectFile(requireContext(), uri)
     }
-
-    private var feedbackJob: Job? = null
 
     override fun inflateBody(inflater: LayoutInflater, parent: ViewGroup) = ToolCompressBinding.inflate(inflater, parent, false)
 
@@ -78,12 +72,6 @@ class CompressPdfFragment : ToolFragment<ToolCompressBinding>() {
         ToolUi.openOutput(body.openOutput.root, state.lastOutputUri, accent, ::viewOutput)
         val message = state.errorMessage ?: state.resultMessage
         ToolUi.status(body.status, message, isError = state.errorMessage != null, onDismiss = vm::clearFeedback)
-        // Messages clear themselves after a few seconds.
-        if (message != null && feedbackJob?.isActive != true) {
-            feedbackJob = viewLifecycleOwner.lifecycleScope.launch {
-                delay(3000)
-                vm.clearFeedback()
-            }
-        }
+        autoClear(message, vm::clearFeedback)
     }
 }

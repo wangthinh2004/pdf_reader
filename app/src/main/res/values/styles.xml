@@ -26,6 +26,24 @@
         <item name="android:background">@color/app_divider</item>
     </style>
 
+    <!-- Small rounded value chip next to a slider label (e.g. "85%"). Colour set in code. -->
+    <style name="ClearPDF.ValueBadge" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_rounded_small</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ClearPDF.Shape.Rounded8" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
     <!-- ── Buttons ── -->
 
     <style name="Widget.ClearPDF.Button" parent="Widget.Material3.Button">
@@ -75,6 +93,17 @@
         <item name="android:textColor">@color/chip_text</item>
         <item name="checkedIconVisible">false</item>
         <item name="chipIconTint">@color/chip_text</item>
+    </style>
+
+    <style name="Widget.ClearPDF.TextField" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">14dp</item>
+        <item name="boxCornerRadiusTopEnd">14dp</item>
+        <item name="boxCornerRadiusBottomStart">14dp</item>
+        <item name="boxCornerRadiusBottomEnd">14dp</item>
+        <item name="boxStrokeColor">@color/accent_blue</item>
+        <item name="boxBackgroundColor">@color/app_surface_variant</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
     </style>
 
     <!-- ── Navigation ── -->

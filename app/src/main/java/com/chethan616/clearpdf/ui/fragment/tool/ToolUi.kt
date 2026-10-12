@@ -95,6 +95,40 @@ object ToolUi {
         button.setOnClickListener { uri?.let(onOpen) }
     }
 
+    /** A segmented option: vivid [accent] fill + white label when checked, clear with ink label when not. */
+    fun segment(button: MaterialButton, @ColorInt accent: Int) {
+        val ctx = button.context
+        val checked = intArrayOf(android.R.attr.state_checked)
+        val states = arrayOf(checked, intArrayOf())
+        button.backgroundTintList = ColorStateList(states, intArrayOf(accent, Color.TRANSPARENT))
+        val ink = ColorStateList(states, intArrayOf(Color.WHITE, ctx.color(R.color.app_text)))
+        button.setTextColor(ink)
+        button.iconTint = ink
+        button.strokeColor = ColorStateList.valueOf(ctx.color(R.color.app_divider))
+    }
+
+    /** Fills [group] with one-tap action chips (e.g. "All", "Odd", "Even", "Clear"). */
+    fun quickChips(group: com.google.android.material.chip.ChipGroup, @ColorInt accent: Int, chips: List<Pair<CharSequence, () -> Unit>>) {
+        group.removeAllViews()
+        chips.forEach { (label, onClick) ->
+            group.addView(com.google.android.material.chip.Chip(group.context).apply {
+                text = label
+                chipBackgroundColor = ColorStateList.valueOf(group.context.accentWash(accent, 0.14f, 0.24f))
+                chipStrokeWidth = 0f
+                setTextColor(group.context.color(R.color.app_text))
+                setOnClickListener { onClick() }
+            })
+        }
+    }
+
+    /** Pushes a view-model value into [field] only when it differs, so typing never loses the cursor. */
+    fun syncText(field: android.widget.EditText, value: String) {
+        if (field.text?.toString() != value) {
+            field.setText(value)
+            field.setSelection(value.length)
+        }
+    }
+
     /** Vivid accent fill with a white label: the screen's main action. */
     fun primaryButton(button: MaterialButton, @ColorInt accent: Int) {
         button.backgroundTintList = ColorStateList.valueOf(accent)

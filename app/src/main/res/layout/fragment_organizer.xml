@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toolbar_height"
+        app:navigationContentDescription="@string/back"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:navigationIconTint="@color/app_text"
+        app:title="@string/organize_screen_title"
+        app:titleTextAppearance="@style/TextAppearance.ClearPDF.ToolbarTitle" />
+
+    <!-- Before a file is picked. -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/intro"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/screen_padding"
+            android:paddingTop="4dp"
+            android:paddingEnd="@dimen/screen_padding">
+
+            <include
+                android:id="@+id/hero"
+                layout="@layout/view_tool_hero" />
+
+            <TextView
+                android:id="@+id/intro_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:textColor="@color/app_danger"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="@color/tool_organize" />
+
+    <!-- Once a file is loaded. -->
+    <LinearLayout
+        android:id="@+id/editor"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_padding"
+        android:paddingEnd="@dimen/screen_padding"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_card"
+            android:gravity="center_vertical"
+            android:minHeight="56dp"
+            android:orientation="horizontal"
+            android:paddingStart="16dp"
+            android:paddingEnd="6dp">
+
+            <TextView
+                android:id="@+id/selection"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAppearance="@style/TextAppearance.ClearPDF.BodyStrong"
+                android:textSize="13sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/rotate_selected"
+                style="@style/Widget.ClearPDF.IconButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/organize_rotate"
+                app:icon="@drawable/ic_rotate_right" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/delete_selected"
+                style="@style/Widget.ClearPDF.IconButton"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:contentDescription="@string/delete"
+                app:icon="@drawable/ic_delete"
+                app:iconTint="@color/accent_red" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/select_toggle"
+                style="@style/Widget.ClearPDF.Button.Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            android:text="@string/organizer_hint"
+            android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+            android:textSize="11sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pages"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:paddingBottom="8dp" />
+
+        <include
+            android:id="@+id/status"
+            layout="@layout/view_tool_status" />
+
+        <include
+            android:id="@+id/open_output"
+            layout="@layout/view_tool_open_output" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:minHeight="52dp"
+            app:icon="@drawable/ic_save" />
+    </LinearLayout>
+</LinearLayout>

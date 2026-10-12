@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Strings added with the XML (View-based) interface. -->
+<resources>
+    <string name="move_up">Move up</string>
+    <string name="move_down">Move down</string>
+    <string name="pages_selected_count">%1$d of %2$d pages selected</string>
+</resources>

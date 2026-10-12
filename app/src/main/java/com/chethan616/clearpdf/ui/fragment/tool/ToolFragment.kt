@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.chethan616.clearpdf.databinding.FragmentToolBinding
@@ -56,6 +58,17 @@ abstract class ToolFragment<B : ViewBinding> : Fragment() {
     /** Back arrow in the bar. Screens with unsaved work override this to confirm first. */
     protected open fun onBackClicked() {
         findNavController().popBackStack()
+    }
+
+    private var feedbackJob: kotlinx.coroutines.Job? = null
+
+    /** Clears a shown result / error message after a few seconds. */
+    protected fun autoClear(message: CharSequence?, clear: () -> Unit) {
+        if (message.isNullOrBlank() || feedbackJob?.isActive == true) return
+        feedbackJob = viewLifecycleOwner.lifecycleScope.launch {
+            kotlinx.coroutines.delay(3000)
+            clear()
+        }
     }
 
     /** Opens a tool's output in the PDF viewer. */

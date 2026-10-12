@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One page of a draft PDF built from images: thumbnail, label, move up / down, remove. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/bg_card"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image"
+        android:layout_width="62dp"
+        android:layout_height="82dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/ClearPDF.Shape.Rounded8" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.ClearPDF.BodyStrong"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/create_reorder_hint"
+            android:textAppearance="@style/TextAppearance.ClearPDF.Caption" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/up"
+        style="@style/Widget.ClearPDF.IconButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/move_up"
+        app:icon="@drawable/ic_arrow_upward"
+        app:iconSize="18dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/down"
+        style="@style/Widget.ClearPDF.IconButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/move_down"
+        app:icon="@drawable/ic_arrow_downward"
+        app:iconSize="18dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/remove"
+        style="@style/Widget.ClearPDF.IconButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/recents_remove"
+        app:icon="@drawable/ic_close"
+        app:iconSize="18dp"
+        app:iconTint="@color/accent_red" />
+</LinearLayout>

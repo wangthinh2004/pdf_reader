@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/hero"
+        layout="@layout/view_tool_hero" />
+
+    <LinearLayout
+        android:id="@+id/options"
+        style="@style/ClearPDF.CardContent"
+        android:layout_marginTop="@dimen/section_gap"
+        android:background="@drawable/bg_card"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/label_icon"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_content_cut" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="@string/extract_pages_label"
+                android:textAppearance="@style/TextAppearance.ClearPDF.SectionTitle" />
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/source_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+            android:textSize="13sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/range_layout"
+            style="@style/Widget.ClearPDF.TextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:digits="0123456789,- "
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_gap"
+        android:minHeight="52dp"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/status"
+        layout="@layout/view_tool_status" />
+
+    <include
+        android:id="@+id/open_output"
+        layout="@layout/view_tool_open_output" />
+</LinearLayout>

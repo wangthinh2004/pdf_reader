@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/pick"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/viewer_pick_pdf"
+            app:icon="@drawable/ic_upload_file" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/copy"
+            style="@style/Widget.ClearPDF.Button.Tonal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/copy"
+            android:visibility="gone"
+            app:icon="@drawable/ic_content_copy" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/share"
+            style="@style/Widget.ClearPDF.IconButton.Filled"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/share"
+            android:visibility="gone"
+            app:backgroundTint="@color/accent_blue"
+            app:icon="@drawable/ic_share"
+            app:iconTint="@android:color/white" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/source_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:ellipsize="middle"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.ClearPDF.Caption" />
+
+    <TextView
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/app_warning"
+        android:textSize="12sp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/recognize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/extract_recognize_text"
+        app:icon="@drawable/ic_auto_awesome" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/searchable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:backgroundTint="@color/app_success" />
+
+    <TextView
+        android:id="@+id/searchable_saved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/app_success"
+        android:textSize="12sp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_card"
+        android:minHeight="320dp"
+        android:padding="14dp">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="3sp"
+            android:textColor="@color/app_text"
+            android:textIsSelectable="true"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="292dp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.progressindicator.CircularProgressIndicator
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:indeterminate="true"
+                app:indicatorColor="@color/tool_extract_text"
+                app:indicatorSize="32dp"
+                app:trackThickness="2dp" />
+
+            <TextView
+                android:id="@+id/placeholder_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pick one file, then run: intro card, picked file, action button, result. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/hero"
+        layout="@layout/view_tool_hero" />
+
+    <include
+        android:id="@+id/file"
+        layout="@layout/view_tool_file" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_gap"
+        android:minHeight="52dp"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/status"
+        layout="@layout/view_tool_status" />
+
+    <include
+        android:id="@+id/open_output"
+        layout="@layout/view_tool_open_output" />
+</LinearLayout>

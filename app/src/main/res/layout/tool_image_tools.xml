@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/hero"
+        layout="@layout/view_tool_hero" />
+
+    <LinearLayout
+        android:id="@+id/options"
+        style="@style/ClearPDF.CardContent"
+        android:layout_marginTop="@dimen/section_gap"
+        android:background="@drawable/bg_card"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/view_section_header" />
+
+        <TextView
+            android:id="@+id/source_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ellipsize="middle"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+            android:textSize="13sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/image_tools_format"
+            android:textAppearance="@style/TextAppearance.ClearPDF.Body" />
+
+        <com.google.android.material.button.MaterialButtonToggleGroup
+            android:id="@+id/formats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:selectionRequired="true"
+            app:singleSelection="true" />
+
+        <LinearLayout
+            android:id="@+id/quality_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/image_tools_quality"
+                    android:textAppearance="@style/TextAppearance.ClearPDF.Body" />
+
+                <TextView
+                    android:id="@+id/quality_value"
+                    style="@style/ClearPDF.ValueBadge" />
+            </LinearLayout>
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/quality"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stepSize="1"
+                android:valueFrom="30"
+                android:valueTo="100"
+                app:labelBehavior="gone" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/image_tools_resize"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Body" />
+
+            <TextView
+                android:id="@+id/scale_value"
+                style="@style/ClearPDF.ValueBadge" />
+        </LinearLayout>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/scale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stepSize="1"
+            android:valueFrom="10"
+            android:valueTo="100"
+            app:labelBehavior="gone" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/image_tools_note"
+            android:textColor="@color/app_text_tertiary"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_gap"
+        android:minHeight="52dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/result"
+        style="@style/ClearPDF.CardContent"
+        android:layout_marginTop="@dimen/section_gap"
+        android:background="@drawable/bg_card"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/result_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.ClearPDF.BodyStrong"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/image_tools_save"
+                app:icon="@drawable/ic_photo_library" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/share"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:text="@string/image_tools_share"
+                app:icon="@drawable/ic_share" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/status"
+        layout="@layout/view_tool_status" />
+</LinearLayout>

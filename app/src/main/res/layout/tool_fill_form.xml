@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/hero"
+        layout="@layout/view_tool_hero" />
+
+    <LinearLayout
+        android:id="@+id/form_card"
+        style="@style/ClearPDF.CardContent"
+        android:layout_marginTop="@dimen/section_gap"
+        android:background="@drawable/bg_card"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/header"
+                layout="@layout/view_section_header"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <!-- One row per form field, built in code. -->
+        <LinearLayout
+            android:id="@+id/fields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical" />
+
+        <View style="@style/ClearPDF.Divider" />
+
+        <include
+            android:id="@+id/flatten"
+            layout="@layout/view_setting_toggle" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_gap"
+        android:minHeight="52dp"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/status"
+        layout="@layout/view_tool_status" />
+
+    <include
+        android:id="@+id/open_output"
+        layout="@layout/view_tool_open_output" />
+</LinearLayout>

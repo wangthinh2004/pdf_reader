@@ -122,8 +122,6 @@ class ComposeBridgeFragment : Fragment() {
                 )
             }
             "scan_document" -> ScanDocumentScreen(backdrop = backdrop, viewModel = viewModel<ScanViewModel>(), onBack = ::back)
-            "decrypt_pdf" -> DecryptPdfScreen(backdrop = backdrop, onBack = ::back, onViewOutput = ::viewPdf)
-            "encrypt_pdf" -> EncryptPdfScreen(backdrop = backdrop, onBack = ::back, onViewOutput = ::viewPdf)
             "pdf_viewer" -> {
                 val vm: PdfViewerViewModel = viewModel(factory = factory { PdfViewerViewModel(OpenPdfUseCase(PdfServiceLocator.pdfViewer)) })
                 LaunchedEffect(uri) { if (uri != null) vm.openPdf(context, uri) }
@@ -145,51 +143,6 @@ class ComposeBridgeFragment : Fragment() {
                 LaunchedEffect(uri) { if (uri != null) vm.load(context, uri) }
                 ImageEditorScreen(backdrop = backdrop, viewModel = vm, onBack = ::back, onOpenPdf = ::viewPdf)
             }
-            "merge_pdf" -> MergePdfScreen(
-                backdrop = backdrop,
-                viewModel = viewModel(factory = factory { MergePdfViewModel(MergePdfUseCase(PdfServiceLocator.pdfMerger)) }),
-                onBack = ::back, onViewOutput = ::viewPdf
-            )
-            "split_pdf" -> SplitPdfScreen(
-                backdrop = backdrop,
-                viewModel = viewModel(factory = factory { SplitPdfViewModel(PdfServiceLocator.pdfSplitter) }),
-                onBack = ::back, onViewOutput = ::viewPdf
-            )
-            "compress_pdf" -> CompressPdfScreen(
-                backdrop = backdrop,
-                viewModel = viewModel(factory = factory { CompressPdfViewModel(CompressPdfUseCase(PdfServiceLocator.pdfCompressor)) }),
-                onBack = ::back, onViewOutput = ::viewPdf
-            )
-            "create_pdf" -> CreatePdfScreen(
-                backdrop = backdrop,
-                viewModel = viewModel(factory = factory { CreatePdfViewModel(CreatePdfUseCase(PdfServiceLocator.pdfCreator)) }),
-                onBack = ::back, onViewOutput = ::viewPdf
-            )
-            "organize_pdf" -> PageOrganizerScreen(
-                backdrop = backdrop,
-                viewModel = viewModel(factory = factory { PageOrganizerViewModel(PdfServiceLocator.pdfEditor) }),
-                onBack = ::back, onViewOutput = ::viewPdf
-            )
-            "extract_text" -> ExtractTextScreen(
-                backdrop = backdrop,
-                viewModel = viewModel(factory = factory {
-                    ExtractTextViewModel(PdfServiceLocator.pdfConverter, PdfServiceLocator.ocrService, PdfServiceLocator.pdfViewer)
-                }),
-                onBack = ::back
-            )
-            "images_to_pdf" -> ImagesToPdfScreen(
-                backdrop = backdrop,
-                viewModel = viewModel(factory = factory { ImagesToPdfViewModel(PdfServiceLocator.pdfConverter) }),
-                onBack = ::back, onViewOutput = ::viewPdf
-            )
-            "pdf_to_images" -> PdfToImagesScreen(backdrop = backdrop, viewModel = viewModel<PdfToImagesViewModel>(), onBack = ::back)
-            "watermark_pdf" -> WatermarkPdfScreen(backdrop = backdrop, viewModel = viewModel<WatermarkPdfViewModel>(), onBack = ::back, onViewOutput = ::viewPdf)
-            "extract_pages" -> ExtractPagesScreen(backdrop = backdrop, viewModel = viewModel<ExtractPagesViewModel>(), onBack = ::back, onViewOutput = ::viewPdf)
-            "page_numbers" -> PageNumbersScreen(backdrop = backdrop, viewModel = viewModel<PageNumbersViewModel>(), onBack = ::back, onViewOutput = ::viewPdf)
-            "flatten_pdf" -> FlattenPdfScreen(backdrop = backdrop, viewModel = viewModel<FlattenPdfViewModel>(), onBack = ::back, onViewOutput = ::viewPdf)
-            "image_tools" -> ImageToolsScreen(backdrop = backdrop, viewModel = viewModel<ImageToolsViewModel>(), onBack = ::back)
-            "html_to_pdf" -> HtmlToPdfScreen(backdrop = backdrop, viewModel = viewModel<HtmlToPdfViewModel>(), onBack = ::back, onViewOutput = ::viewPdf)
-            "fill_form" -> FillFormScreen(backdrop = backdrop, viewModel = viewModel<FillFormViewModel>(), onBack = ::back, onViewOutput = ::viewPdf)
         }
     }
 }

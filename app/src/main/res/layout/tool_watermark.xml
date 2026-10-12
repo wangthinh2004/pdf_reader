@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/hero"
+        layout="@layout/view_tool_hero" />
+
+    <include
+        android:id="@+id/file"
+        layout="@layout/view_tool_file" />
+
+    <LinearLayout
+        android:id="@+id/options"
+        style="@style/ClearPDF.CardContent"
+        android:layout_marginTop="@dimen/section_gap"
+        android:background="@drawable/bg_card"
+        android:visibility="gone">
+
+        <include
+            android:id="@+id/header"
+            layout="@layout/view_section_header" />
+
+        <include
+            android:id="@+id/mode"
+            layout="@layout/view_segment_two" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/text_layout"
+            style="@style/Widget.ClearPDF.TextField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/image_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pick_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/watermark_pick_image"
+                app:icon="@drawable/ic_image" />
+
+            <TextView
+                android:id="@+id/image_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:ellipsize="middle"
+                android:maxLines="1"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Caption" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/watermark_opacity"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Body" />
+
+            <TextView
+                android:id="@+id/opacity_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_rounded_small"
+                android:paddingStart="10dp"
+                android:paddingTop="4dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="4dp"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/opacity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:valueFrom="0.05"
+            android:valueTo="1"
+            app:labelBehavior="gone" />
+
+        <LinearLayout
+            android:id="@+id/diagonal_row"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/watermark_diagonal"
+                android:textAppearance="@style/TextAppearance.ClearPDF.Body" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/diagonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/run"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/section_gap"
+        android:minHeight="52dp"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/status"
+        layout="@layout/view_tool_status" />
+
+    <include
+        android:id="@+id/open_output"
+        layout="@layout/view_tool_open_output" />
+</LinearLayout>
