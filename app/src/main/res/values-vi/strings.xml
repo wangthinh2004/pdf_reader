@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_device_docs">Tài liệu trên máy</string>
+    <string name="home_device_docs_count">Tài liệu trên máy (%1$d)</string>
+    <string name="home_device_access_title">Hiển thị tất cả tài liệu</string>
+    <string name="home_device_access_body">Cho phép truy cập tệp để ClearPDF liệt kê mọi tệp PDF, Word, Excel và PowerPoint trên máy. Tệp không bao giờ rời khỏi điện thoại của bạn.</string>
+    <string name="home_device_access_grant">Cho phép truy cập</string>
+    <string name="home_device_scanning">Đang tìm tài liệu…</string>
+    <string name="home_device_empty">Không có tài liệu loại này</string>
+    <string name="home_device_error">Không đọc được tệp. Chạm để thử lại.</string>
+    <string name="hwp_no_text">Tài liệu này không có nội dung chữ để hiển thị.</string>
+    <string name="recents_filter_hwp">HWP</string>
+    <string name="recents_filter_txt">TXT</string>
+    <string name="text_truncated">… Tệp quá lớn, chỉ hiển thị phần đầu.</string>
+</resources>

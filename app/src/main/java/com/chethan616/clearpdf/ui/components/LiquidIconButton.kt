@@ -1,0 +1,166 @@
+package com.chethan616.clearpdf.ui.components
+
+import androidx.compose.foundation.border
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.graphics.BlendMode
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.isSpecified
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.util.fastCoerceAtMost
+import androidx.compose.ui.util.lerp
+import com.chethan616.clearpdf.ui.theme.LocalIsScrolling
+import com.chethan616.clearpdf.ui.utils.InteractiveHighlight
+import com.kyant.backdrop.Backdrop
+import com.kyant.backdrop.drawBackdrop
+import com.kyant.backdrop.effects.blur
+import com.kyant.backdrop.effects.lens
+import com.kyant.backdrop.effects.vibrancy
+import androidx.compose.foundation.shape.CircleShape
+import kotlin.math.abs
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.tanh
+
+/** Opacity of the frosted disc behind an untinted icon while its real glass is on. */
+private const val GlassDiscAlpha = 0.35f
+
+/**
+ * Circular variant of LiquidButton, optimized for icons.
+ */
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun LiquidIconButton(
+    onClick: () -> Unit,
+    backdrop: Backdrop,
+    modifier: Modifier = Modifier,
+    isInteractive: Boolean = true,
+    tint: Color = Color.Unspecified,
+    surfaceColor: Color = Color.Unspecified,
+    onLongClick: (() -> Unit)? = null,
+    onLongClickLabel: String? = null,
+    content: @Composable () -> Unit
+) {
+    val animationScope = rememberCoroutineScope()
+    val interactiveHighlight = remember(animationScope) {
+        InteractiveHighlight(animationScope = animationScope)
+    }
+    // See LiquidButton's own note: a plain (non-deferred) read so this skips drawBackdrop's capture
+    // entirely while scrolling, not just its shaders.
+    val isScrolling = LocalIsScrolling.current()
+    val isDark = com.chethan616.clearpdf.ui.theme.LocalIsDarkMode.current
+
+    Box(
+        modifier
+            .size(40.dp)
+            .then(
+                if (isScrolling) {
+                    Modifier.clip(CircleShape).drawBehind {
+                        // Untinted buttons get a frosted stand-in so the icon isn't left bare.
+                        if (!tint.isSpecified) drawRect(FlatGlass.fill(isDark))
+                        if (tint.isSpecified) {
+                            drawRect(tint, blendMode = BlendMode.Hue)
+                            drawRect(tint.copy(alpha = 0.75f))
+                        }
+                        if (surfaceColor.isSpecified) {
+                            drawRect(surfaceColor)
+                        }
+                    }.then(
+                        if (!tint.isSpecified) Modifier.border(0.5.dp, FlatGlass.rim(isDark), CircleShape) else Modifier
+                    )
+                } else {
+                    Modifier.drawBackdrop(
+                        backdrop = backdrop,
+                        shape = { CircleShape },
+                        effects = {
+                            vibrancy()
+                            blur(2f.dp.toPx())
+                            lens(12f.dp.toPx(), 24f.dp.toPx())
+                        },
+                        layerBlock = if (isInteractive) {
+                            {
+                                val width = size.width
+                                val height = size.height
+
+                                val progress = interactiveHighlight.pressProgress
+                                val scale = lerp(1f, 1f + 4f.dp.toPx() / size.height, progress)
+
+                                val maxOffset = size.minDimension
+                                val initialDerivative = 0.05f
+                                val offset = interactiveHighlight.offset
+                                translationX = maxOffset * tanh(initialDerivative * offset.x / maxOffset)
+                                translationY = maxOffset * tanh(initialDerivative * offset.y / maxOffset)
+
+                                val maxDragScale = 4f.dp.toPx() / size.height
+                                val offsetAngle = atan2(offset.y, offset.x)
+                                scaleX =
+                                    scale +
+                                            maxDragScale * abs(cos(offsetAngle) * offset.x / size.maxDimension) *
+                                            (width / height).fastCoerceAtMost(1f)
+                                scaleY =
+                                    scale +
+                                            maxDragScale * abs(sin(offsetAngle) * offset.y / size.maxDimension) *
+                                            (height / width).fastCoerceAtMost(1f)
+                            }
+                        } else {
+                            null
+                        },
+                        onDrawSurface = {
+                            // Over a flat backdrop the lens refracts nothing visible, so untinted
+                            // buttons get a faint disc to keep their circle readable.
+                            if (!tint.isSpecified) drawRect(FlatGlass.fill(isDark).copy(alpha = GlassDiscAlpha))
+                            if (tint.isSpecified) {
+                                drawRect(tint, blendMode = BlendMode.Hue)
+                                drawRect(tint.copy(alpha = 0.75f))
+                            }
+                            if (surfaceColor.isSpecified) {
+                                drawRect(surfaceColor)
+                            }
+                        }
+                    )
+                }
+            )
+            .then(
+                if (onLongClick != null)
+                    Modifier.combinedClickable(
+                        interactionSource = null,
+                        indication = null,
+                        role = Role.Button,
+                        onClick = onClick,
+                        onLongClickLabel = onLongClickLabel,
+                        onLongClick = onLongClick
+                    )
+                else
+                    Modifier.clickable(
+                        interactionSource = null,
+                        indication = null,
+                        role = Role.Button,
+                        onClick = onClick
+                    )
+            )
+            .then(
+                if (isInteractive) {
+                    Modifier
+                        .then(interactiveHighlight.modifier)
+                        .then(interactiveHighlight.gestureModifier)
+                } else {
+                    Modifier
+                }
+            ),
+        contentAlignment = Alignment.Center
+    ) {
+        content()
+    }
+}
