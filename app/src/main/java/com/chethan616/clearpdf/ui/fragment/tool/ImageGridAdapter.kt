@@ -1,42 +1,31 @@
 package com.chethan616.clearpdf.ui.fragment.tool
 
 import android.net.Uri
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil3.load
 import com.chethan616.clearpdf.R
 import com.chethan616.clearpdf.databinding.ItemImageThumbBinding
+import com.chethan616.clearpdf.presentation.base.BaseListAdapter
+import com.chethan616.clearpdf.presentation.base.BaseViewHolder
+import com.chethan616.clearpdf.presentation.base.simpleDiff
 
 /** Grid of picked images; the corner button removes one. */
-class ImageGridAdapter(private val onRemove: (Int) -> Unit) : RecyclerView.Adapter<ImageGridAdapter.Holder>() {
+class ImageGridAdapter(private val onRemove: (Int) -> Unit) :
+    BaseListAdapter<ImageGridAdapter.Item, ItemImageThumbBinding>(ItemImageThumbBinding::inflate, simpleDiff { it.uri }) {
 
-    private var uris: List<Uri> = emptyList()
+    data class Item(val index: Int, val uri: Uri)
 
-    fun submit(uris: List<Uri>) {
-        if (uris == this.uris) return
-        this.uris = uris
-        notifyDataSetChanged()
+    fun submit(uris: List<Uri>) = submitList(uris.mapIndexed(::Item))
+
+    override fun onViewHolderCreated(holder: BaseViewHolder<ItemImageThumbBinding>) {
+        holder.binding.remove.setOnClickListener {
+            val pos = holder.bindingAdapterPosition
+            if (pos != RecyclerView.NO_POSITION) onRemove(pos)
+        }
     }
 
-    override fun getItemCount() = uris.size
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        Holder(ItemImageThumbBinding.inflate(LayoutInflater.from(parent.context), parent, false))
-
-    override fun onBindViewHolder(holder: Holder, position: Int) = holder.bind(position)
-
-    inner class Holder(private val b: ItemImageThumbBinding) : RecyclerView.ViewHolder(b.root) {
-        init {
-            b.remove.setOnClickListener {
-                val pos = bindingAdapterPosition
-                if (pos != RecyclerView.NO_POSITION) onRemove(pos)
-            }
-        }
-
-        fun bind(index: Int) {
-            b.image.load(uris[index])
-            b.image.contentDescription = b.root.context.getString(R.string.image_number, index + 1)
-        }
+    override fun bind(binding: ItemImageThumbBinding, item: Item, position: Int) {
+        binding.image.load(item.uri)
+        binding.image.contentDescription = binding.root.context.getString(R.string.image_number, item.index + 1)
     }
 }
