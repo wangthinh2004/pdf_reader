@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 import java.util.Properties
@@ -173,6 +175,11 @@ kotlin {
 
 dependencies {
     testImplementation("junit:junit:4.13.2")
+    // Dependency injection (see core/di).
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
     implementation(libs.androidx.core.ktx)
     // View-based UI: XML layouts + Fragments + Navigation + Material Components.
     implementation(libs.androidx.appcompat)

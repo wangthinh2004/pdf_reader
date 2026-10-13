@@ -18,6 +18,7 @@ import com.chethan616.clearpdf.data.repository.AppSettingsManager
 import com.chethan616.clearpdf.data.repository.GitHubStarPromptManager
 import com.chethan616.clearpdf.data.repository.OnboardingManager
 import com.chethan616.clearpdf.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import com.chethan616.clearpdf.ui.common.AppNavigator
 import com.chethan616.clearpdf.ui.utils.LocaleHelper
 import com.chethan616.clearpdf.ui.utils.StarPromptEventBus
@@ -30,6 +31,7 @@ import kotlinx.coroutines.withContext
  * The single Activity. Hosts every screen as a Fragment in [R.navigation.nav_graph] and shows the
  * bottom navigation on the three main tabs (Home, Tools, Settings).
  */
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding

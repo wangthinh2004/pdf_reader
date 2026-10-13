@@ -33,6 +33,7 @@
     </queries>
 
     <application
+        android:name=".ClearPdfApp"
         android:allowBackup="true"
         android:enableOnBackInvokedCallback="true"
         android:hardwareAccelerated="true"
