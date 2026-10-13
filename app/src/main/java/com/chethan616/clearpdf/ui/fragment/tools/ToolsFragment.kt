@@ -14,6 +14,7 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.chethan616.clearpdf.R
+import com.chethan616.clearpdf.data.ai.GeminiSummarizer
 import com.chethan616.clearpdf.databinding.FragmentToolsBinding
 import com.chethan616.clearpdf.databinding.ItemToolTileBinding
 import com.chethan616.clearpdf.databinding.ItemToolWideBinding
@@ -40,6 +41,13 @@ class ToolsFragment : Fragment() {
     private data class Section(@StringRes val label: Int, val tools: List<Tool>)
 
     private val openPdf = Tool(R.string.tool_open_pdf, R.string.tool_open_pdf_sub, R.color.tool_open, R.drawable.ic_file_open, R.id.pdf_viewer)
+
+    // Only listed in builds that can reach Gemini (foss with a GEMINI_API_KEY).
+    private val aiSection = Section(
+        R.string.tools_section_ai, listOf(
+            Tool(R.string.tool_ai_summary, R.string.tool_ai_summary_sub, R.color.tool_ai_summary, R.drawable.ic_auto_awesome, R.id.ai_summary)
+        )
+    )
 
     // Web/HTML to PDF stays unlisted in the privacy-focused release; its route is kept.
     private val sections = listOf(
@@ -103,6 +111,7 @@ class ToolsFragment : Fragment() {
     }
 
     private fun render() {
+        val sections = if (GeminiSummarizer.isAvailable(requireContext())) listOf(aiSection) + sections else sections
         val content = binding.content
         content.removeAllViews()
         if (query.isNotEmpty()) {
@@ -143,6 +152,8 @@ class ToolsFragment : Fragment() {
                 pair.forEachIndexed { colIdx, tool ->
                     val tile = gridTile(tool, row)
                     if (colIdx > 0) tile.updateLayoutParams<LinearLayout.LayoutParams> { marginStart = requireContext().dp(12) }
+                    // match_parent only works with a sibling tile to set the row height; alone it collapses to 0.
+                    if (pair.size == 1) tile.updateLayoutParams<LinearLayout.LayoutParams> { height = ViewGroup.LayoutParams.WRAP_CONTENT }
                     row.addView(tile)
                 }
                 // A lone trailing tile keeps half width instead of stretching.

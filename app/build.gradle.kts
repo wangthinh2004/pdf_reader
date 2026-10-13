@@ -23,6 +23,16 @@ val releaseStorePassword = signingValue("storePassword", "CLEARPDF_UPLOAD_STORE_
 val releaseKeyAlias = signingValue("keyAlias", "CLEARPDF_UPLOAD_KEY_ALIAS")
 val releaseKeyPassword = signingValue("keyPassword", "CLEARPDF_UPLOAD_KEY_PASSWORD")
 
+// AI summary prototype: the Gemini key lives in the untracked local.properties, never in git.
+val localProperties = Properties().apply {
+    val file = rootProject.file("local.properties")
+    if (file.exists()) {
+        file.inputStream().use { load(it) }
+    }
+}
+val geminiApiKey = localProperties.getProperty("GEMINI_API_KEY").orEmpty()
+val geminiModel = localProperties.getProperty("GEMINI_MODEL")?.takeIf { it.isNotBlank() } ?: "gemini-3.5-flash-lite"
+
 val hasReleaseSigning = !releaseStoreFilePath.isNullOrBlank() &&
     !releaseStorePassword.isNullOrBlank() &&
     !releaseKeyAlias.isNullOrBlank() &&
@@ -42,6 +52,9 @@ android {
         // Keep every locale declared by the app. Filtering this to English
         // removes values-pt-rBR from the packaged APK, so the language picker
         // can appear to work while the app continues to resolve English.
+        // AI summary (both flavors). Left blank when local.properties has no key, which hides it.
+        buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
+        buildConfigField("String", "GEMINI_MODEL", "\"$geminiModel\"")
     }
 
     signingConfigs {
@@ -74,6 +87,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
     testOptions {
         // Plain JVM unit tests (the xlsx model/writer). Android stubs return defaults instead of

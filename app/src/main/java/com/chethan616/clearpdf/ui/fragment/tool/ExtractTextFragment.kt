@@ -11,16 +11,24 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.chethan616.clearpdf.R
+import com.chethan616.clearpdf.data.ai.GeminiSummarizer
 import com.chethan616.clearpdf.data.repository.PdfServiceLocator
 import com.chethan616.clearpdf.databinding.ToolExtractTextBinding
 import com.chethan616.clearpdf.ui.common.collectWhileStarted
 import com.chethan616.clearpdf.ui.common.color
 import com.chethan616.clearpdf.ui.viewmodel.ExtractTextUiState
 import com.chethan616.clearpdf.ui.viewmodel.ExtractTextViewModel
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ExtractTextFragment : ToolFragment<ToolExtractTextBinding>() {
 
-    override val titleRes = R.string.tool_extract
+    /** Opened from the AI Summary tool: summarize as soon as the document's text is ready. */
+    private val aiMode get() = arguments?.getBoolean(ARG_AI_MODE) == true
+
+    /** The file the AI mode already asked to summarize, so a dismissed consent dialog isn't re-shown. */
+    private var autoSummarizedUri: android.net.Uri? = null
+
+    override val titleRes get() = if (aiMode) R.string.tool_ai_summary else R.string.tool_extract
 
     private val vm: ExtractTextViewModel by viewModels {
         viewModelFactory {
@@ -53,7 +61,31 @@ class ExtractTextFragment : ToolFragment<ToolExtractTextBinding>() {
         }
         body.recognize.setOnClickListener { vm.recognizeText(requireContext()) }
         body.searchable.setOnClickListener { vm.makeSearchablePdf(requireContext()) }
+        ToolUi.primaryButton(body.summarize, accent)
+        body.summarize.setOnClickListener { requestSummary() }
+        body.summaryCopy.setOnClickListener {
+            val cm = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            cm.setPrimaryClip(ClipData.newPlainText(getString(R.string.ai_summary_title), vm.uiState.value.summary.orEmpty()))
+        }
         collectWhileStarted(vm.uiState, ::render)
+    }
+
+    /** Text leaves the device only after the user has agreed once to sending it to Gemini. */
+    private fun requestSummary() {
+        val ctx = requireContext()
+        if (GeminiSummarizer.hasConsent(ctx)) {
+            vm.summarize(ctx)
+            return
+        }
+        MaterialAlertDialogBuilder(ctx)
+            .setTitle(R.string.ai_summary_consent_title)
+            .setMessage(R.string.ai_summary_consent_message)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(R.string.ai_summary_consent_accept) { _, _ ->
+                GeminiSummarizer.grantConsent(ctx)
+                vm.summarize(ctx)
+            }
+            .show()
     }
 
     private fun render(state: ExtractTextUiState) {
@@ -70,6 +102,23 @@ class ExtractTextFragment : ToolFragment<ToolExtractTextBinding>() {
         body.searchableSaved.isVisible = state.searchableOutputUri != null
         body.searchableSaved.text = getString(R.string.extract_searchable_saved, state.searchableSavedLabel.orEmpty())
 
+        if (aiMode && hasText && state.summary == null && !state.isSummarizing && state.summaryError == null &&
+            autoSummarizedUri != state.sourceUri
+        ) {
+            autoSummarizedUri = state.sourceUri
+            requestSummary()
+        }
+        body.summarize.isVisible = hasText && GeminiSummarizer.isAvailable(requireContext())
+        ToolUi.setBusy(
+            body.summarize, state.isSummarizing, R.drawable.ic_auto_awesome,
+            getString(if (state.isSummarizing) R.string.ai_summary_working else R.string.ai_summary_action)
+        )
+        body.summaryCard.isVisible = state.summary != null
+        if (body.summaryText.text.toString() != state.summary.orEmpty()) body.summaryText.text = state.summary
+        body.summaryNote.setText(if (state.summaryTruncated) R.string.ai_summary_truncated_note else R.string.ai_summary_note)
+        body.summaryError.text = state.summaryError
+        body.summaryError.isVisible = state.summaryError != null
+
         val busy = state.isExtracting || state.isRecognizing
         body.text.isVisible = hasText && !busy
         if (body.text.text.toString() != state.text) body.text.text = state.text
@@ -81,7 +130,12 @@ class ExtractTextFragment : ToolFragment<ToolExtractTextBinding>() {
             state.isRecognizing && progress != null -> getString(R.string.extract_recognizing, progress.first + 1, progress.second)
             state.isRecognizing -> getString(R.string.extract_recognize_text)
             state.hasResult -> getString(R.string.extract_no_text)
+            aiMode -> getString(R.string.ai_summary_pick_hint)
             else -> getString(R.string.extract_pick_hint)
         }
+    }
+
+    private companion object {
+        const val ARG_AI_MODE = "ai_mode"
     }
 }

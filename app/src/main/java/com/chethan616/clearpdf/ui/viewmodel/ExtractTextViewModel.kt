@@ -11,6 +11,7 @@ import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.chethan616.clearpdf.R
+import com.chethan616.clearpdf.data.ai.GeminiSummarizer
 import com.chethan616.clearpdf.data.repository.RecentFile
 import com.chethan616.clearpdf.data.repository.RecentFilesManager
 import com.chethan616.clearpdf.data.repository.SaveLocationManager
@@ -47,7 +48,12 @@ data class ExtractTextUiState(
     val canMakeSearchable: Boolean = false,
     val isSavingSearchable: Boolean = false,
     val searchableOutputUri: Uri? = null,
-    val searchableSavedLabel: String? = null
+    val searchableSavedLabel: String? = null,
+    val isSummarizing: Boolean = false,
+    val summary: String? = null,
+    /** True when the document was longer than what one summary request carries. */
+    val summaryTruncated: Boolean = false,
+    val summaryError: String? = null
 )
 
 class ExtractTextViewModel(
@@ -168,6 +174,23 @@ class ExtractTextViewModel(
                     isSavingSearchable = false,
                     errorMessage = t.message ?: "Couldn't create a searchable PDF"
                 )
+            }
+        }
+    }
+
+    /** Sends the extracted (or OCR'd) text to Gemini. The fragment gates this behind consent. */
+    fun summarize(context: Context) {
+        val text = _uiState.value.text
+        if (text.isBlank() || _uiState.value.isSummarizing) return
+        _uiState.value = _uiState.value.copy(isSummarizing = true, summary = null, summaryError = null)
+        viewModelScope.launch {
+            _uiState.value = try {
+                val summary = GeminiSummarizer.summarize(text)
+                _uiState.value.copy(isSummarizing = false, summary = summary, summaryTruncated = GeminiSummarizer.isTruncated(text))
+            } catch (e: GeminiSummarizer.QuotaExceededException) {
+                _uiState.value.copy(isSummarizing = false, summaryError = context.getString(R.string.ai_summary_quota))
+            } catch (e: Exception) {
+                _uiState.value.copy(isSummarizing = false, summaryError = context.getString(R.string.ai_summary_failed, e.message.orEmpty()))
             }
         }
     }

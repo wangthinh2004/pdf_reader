@@ -78,6 +78,16 @@
         android:name="com.chethan616.clearpdf.ui.fragment.tool.ExtractTextFragment">
     </fragment>
 
+    <!-- AI Summary reuses Extract Text: same screen, but it summarizes as soon as text is ready. -->
+    <fragment
+        android:id="@+id/ai_summary"
+        android:name="com.chethan616.clearpdf.ui.fragment.tool.ExtractTextFragment">
+        <argument
+            android:name="ai_mode"
+            android:defaultValue="true"
+            app:argType="boolean" />
+    </fragment>
+
     <fragment
         android:id="@+id/images_to_pdf"
         android:name="com.chethan616.clearpdf.ui.fragment.tool.ImagesToPdfFragment">

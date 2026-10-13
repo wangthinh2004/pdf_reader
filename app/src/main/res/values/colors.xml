@@ -35,6 +35,7 @@
     <color name="tool_images_to_pdf">#FF5E5CE6</color>
     <color name="tool_pdf_to_images">#FF1597D3</color>
     <color name="tool_extract_text">#FF00838F</color>
+    <color name="tool_ai_summary">#FF7E57C2</color>
     <color name="tool_create">#FFEE6A00</color>
     <color name="tool_html_to_pdf">#FFEE6A00</color>
     <color name="tool_watermark">#FFD81B60</color>
