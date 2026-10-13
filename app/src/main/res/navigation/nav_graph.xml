@@ -60,7 +60,7 @@
 
     <fragment
         android:id="@+id/compress_pdf"
-        android:name="com.chethan616.clearpdf.ui.fragment.tool.CompressPdfFragment">
+        android:name="com.chethan616.clearpdf.presentation.feature.tool.compress.CompressPdfFragment">
     </fragment>
 
     <fragment
