@@ -14,10 +14,11 @@ import androidx.core.view.updateLayoutParams
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.chethan616.clearpdf.R
-import com.chethan616.clearpdf.data.ai.GeminiSummarizer
 import com.chethan616.clearpdf.databinding.FragmentToolsBinding
 import com.chethan616.clearpdf.databinding.ItemToolTileBinding
 import com.chethan616.clearpdf.databinding.ItemToolWideBinding
+import com.chethan616.clearpdf.domain.model.SummaryAvailability
+import com.chethan616.clearpdf.domain.usecase.summary.GetSummaryAvailabilityUseCase
 import com.chethan616.clearpdf.ui.common.AppNavigator
 import com.chethan616.clearpdf.ui.common.SearchHeader
 import com.chethan616.clearpdf.ui.common.accentWash
@@ -26,9 +27,15 @@ import com.chethan616.clearpdf.ui.common.color
 import com.chethan616.clearpdf.ui.common.dp
 import com.chethan616.clearpdf.ui.common.tint
 import com.chethan616.clearpdf.ui.common.tintBackground
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /** Tools tab: every PDF tool, grouped in sections, with search. */
+@AndroidEntryPoint
 class ToolsFragment : Fragment() {
+
+    // Phase 4 moves this into a ToolsViewModel.
+    @Inject lateinit var getSummaryAvailability: GetSummaryAvailabilityUseCase
 
     private data class Tool(
         @StringRes val title: Int,
@@ -111,7 +118,7 @@ class ToolsFragment : Fragment() {
     }
 
     private fun render() {
-        val sections = if (GeminiSummarizer.isAvailable(requireContext())) listOf(aiSection) + sections else sections
+        val sections = if (getSummaryAvailability() != SummaryAvailability.UNAVAILABLE) listOf(aiSection) + sections else sections
         val content = binding.content
         content.removeAllViews()
         if (query.isNotEmpty()) {
