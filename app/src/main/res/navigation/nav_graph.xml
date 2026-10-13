@@ -75,13 +75,13 @@
 
     <fragment
         android:id="@+id/extract_text"
-        android:name="com.chethan616.clearpdf.ui.fragment.tool.ExtractTextFragment">
+        android:name="com.chethan616.clearpdf.presentation.feature.tool.extracttext.ExtractTextFragment">
     </fragment>
 
     <!-- AI Summary reuses Extract Text: same screen, but it summarizes as soon as text is ready. -->
     <fragment
         android:id="@+id/ai_summary"
-        android:name="com.chethan616.clearpdf.ui.fragment.tool.ExtractTextFragment">
+        android:name="com.chethan616.clearpdf.presentation.feature.tool.extracttext.ExtractTextFragment">
         <argument
             android:name="ai_mode"
             android:defaultValue="true"

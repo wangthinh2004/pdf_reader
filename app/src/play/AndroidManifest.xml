@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
   Play flavor only. Network access is used solely for the optional AI summary, which sends a
-  document's text to the Gemini API after the user agrees to it (see GeminiSummarizer).
+  document's text to the Gemini API after the user agrees to it (see SummaryRepositoryImpl).
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
