@@ -26,7 +26,7 @@
 
 - `AppResult<T>` is dropped: repositories throw typed `AppError`, `BaseViewModel.launch` maps them. One error mechanism instead of two.
 - `BaseActivity` and `BaseDialog` are created in phase 4 together with their first users (`MainActivity`, `SaveDialog`/`SignatureDialog`/`ShareDialog`), instead of shipping unused in phase 0. `MainActivity` only gains `@AndroidEntryPoint` here.
-- Compress/Searchable "saved" messages become one-shot events: same card, same 3 s auto-hide, but they no longer reappear after rotation.
+- The Compress "saved" message becomes a one-shot event: same card, same 3 s auto-hide, but it no longer reappears after rotation. The Searchable PDF "saved" line keeps today's behaviour (stays in state, survives rotation, no auto-hide).
 
 ## Review Focus
 
