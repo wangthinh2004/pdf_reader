@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home (Figma "Home", 360×800). The brand/search/quick-action block scrolls away with the list;
+     file-type tabs, sort row and summary stay pinned. -->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ds_background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_ds_home_header"
+        app:elevation="0dp"
+        app:liftOnScroll="false">
+
+        <!-- ── Scrolls away ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_68dp">
+
+                <!-- Brand -->
+                <LinearLayout
+                    android:id="@+id/brand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|start"
+                    android:layout_marginStart="@dimen/_16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_title"
+                        android:textAppearance="@style/TextAppearance.DS.Heading2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/home_brand_tagline"
+                        android:textAppearance="@style/TextAppearance.DS.Body3" />
+                </LinearLayout>
+
+                <!-- Normal app bar: PRO, select, settings. Icon boxes are 36 so the 24 icons keep
+                     Figma's 12 gaps while giving a bigger touch target. -->
+                <LinearLayout
+                    android:id="@+id/actions"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:layout_marginEnd="@dimen/_10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/pro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_34dp"
+                        android:background="@drawable/bg_ds_pro"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/_10dp"
+                        android:paddingEnd="@dimen/_10dp">
+
+                        <ImageView
+                            android:layout_width="@dimen/_16dp"
+                            android:layout_height="@dimen/_16dp"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_ds_crown"
+                            app:tint="@color/ds_pro_text" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_5dp"
+                            android:fontFamily="@font/inter_bold"
+                            android:text="@string/home_pro"
+                            android:textColor="@color/ds_pro_text"
+                            android:textSize="@dimen/_11sp" />
+                    </LinearLayout>
+
+                    <ImageButton
+                        android:id="@+id/select"
+                        android:layout_width="@dimen/_36dp"
+                        android:layout_height="@dimen/_36dp"
+                        android:layout_marginStart="@dimen/_6dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/home_select"
+                        android:padding="@dimen/_6dp"
+                        android:src="@drawable/ic_ds_check_square"
+                        app:tint="@color/ds_text_secondary" />
+
+                    <ImageButton
+                        android:id="@+id/settings"
+                        android:layout_width="@dimen/_36dp"
+                        android:layout_height="@dimen/_36dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/home_settings"
+                        android:padding="@dimen/_6dp"
+                        android:src="@drawable/ic_ds_settings"
+                        app:tint="@color/ds_text_secondary" />
+                </LinearLayout>
+
+                <!-- Selection mode app bar -->
+                <LinearLayout
+                    android:id="@+id/selection_bar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/_6dp"
+                    android:paddingEnd="@dimen/_10dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <ImageButton
+                        android:id="@+id/selection_close"
+                        android:layout_width="@dimen/_36dp"
+                        android:layout_height="@dimen/_36dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/home_select_close"
+                        android:padding="@dimen/_6dp"
+                        android:src="@drawable/ic_close"
+                        app:tint="@color/ds_text_primary" />
+
+                    <TextView
+                        android:id="@+id/selection_count"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_4dp"
+                        android:layout_weight="1"
+                        android:textAppearance="@style/TextAppearance.DS.Heading3"
+                        tools:text="2 selected" />
+
+                    <ImageButton
+                        android:id="@+id/selection_share"
+                        android:layout_width="@dimen/_36dp"
+                        android:layout_height="@dimen/_36dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/home_select_share"
+                        android:padding="@dimen/_6dp"
+                        android:src="@drawable/ic_ios_share"
+                        app:tint="@color/ds_text_secondary" />
+
+                    <ImageButton
+                        android:id="@+id/selection_delete"
+                        android:layout_width="@dimen/_36dp"
+                        android:layout_height="@dimen/_36dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/home_select_delete"
+                        android:padding="@dimen/_6dp"
+                        android:src="@drawable/ic_delete_outline"
+                        app:tint="@color/ds_text_secondary" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Search -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40dp"
+                android:layout_marginStart="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_8dp"
+                android:layout_marginEnd="@dimen/_16dp"
+                android:background="@drawable/bg_ds_search"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/_16dp"
+                android:paddingEnd="@dimen/_8dp">
+
+                <ImageView
+                    android:layout_width="@dimen/_24dp"
+                    android:layout_height="@dimen/_24dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_ds_search"
+                    app:tint="@color/ds_text_secondary" />
+
+                <EditText
+                    android:id="@+id/search"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_8dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/home_search_hint"
+                    android:imeOptions="actionSearch"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:textAppearance="@style/TextAppearance.DS.Body2"
+                    android:textColorHint="@color/ds_text_secondary" />
+
+                <ImageButton
+                    android:id="@+id/search_clear"
+                    android:layout_width="@dimen/_32dp"
+                    android:layout_height="@dimen/_32dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/home_search_clear"
+                    android:padding="@dimen/_6dp"
+                    android:src="@drawable/ic_close"
+                    android:visibility="gone"
+                    app:tint="@color/ds_text_secondary" />
+            </LinearLayout>
+
+            <!-- Quick actions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_16dp"
+                android:layout_marginTop="@dimen/_12dp"
+                android:layout_marginEnd="@dimen/_16dp"
+                android:layout_marginBottom="@dimen/_12dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/action_import"
+                    style="@style/Widget.DS.QuickAction"
+                    android:background="@drawable/bg_ds_action_teal"
+                    android:text="@string/home_action_import"
+                    android:textColor="@color/ds_action_teal_text" />
+
+                <TextView
+                    android:id="@+id/action_image_to_pdf"
+                    style="@style/Widget.DS.QuickAction"
+                    android:layout_marginStart="@dimen/_8dp"
+                    android:background="@drawable/bg_ds_action_purple"
+                    android:text="@string/home_action_image_to_pdf"
+                    android:textColor="@color/ds_action_purple_text" />
+
+                <TextView
+                    android:id="@+id/action_folder"
+                    style="@style/Widget.DS.QuickAction"
+                    android:layout_marginStart="@dimen/_8dp"
+                    android:background="@drawable/bg_ds_action_orange"
+                    android:text="@string/home_action_folder"
+                    android:textColor="@color/ds_action_orange_text" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ── Pinned ── -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/ds_background"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1dp"
+                    android:layout_gravity="bottom"
+                    android:background="@color/ds_divider" />
+
+                <LinearLayout
+                    android:id="@+id/tabs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tab_all"
+                        style="@style/Widget.DS.FilterTab"
+                        android:text="@string/home_tab_all" />
+
+                    <TextView
+                        android:id="@+id/tab_pdf"
+                        style="@style/Widget.DS.FilterTab"
+                        android:layout_marginStart="@dimen/_8dp"
+                        android:text="@string/home_tab_pdf" />
+
+                    <TextView
+                        android:id="@+id/tab_word"
+                        style="@style/Widget.DS.FilterTab"
+                        android:layout_marginStart="@dimen/_8dp"
+                        android:text="@string/home_tab_word" />
+
+                    <TextView
+                        android:id="@+id/tab_excel"
+                        style="@style/Widget.DS.FilterTab"
+                        android:layout_marginStart="@dimen/_8dp"
+                        android:text="@string/home_tab_excel" />
+
+                    <TextView
+                        android:id="@+id/tab_ppt"
+                        style="@style/Widget.DS.FilterTab"
+                        android:layout_marginStart="@dimen/_8dp"
+                        android:text="@string/home_tab_ppt" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Sort and view controls -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_56dp"
+                android:paddingStart="@dimen/_16dp"
+                android:paddingEnd="@dimen/_16dp">
+
+                <LinearLayout
+                    android:id="@+id/sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40dp"
+                    android:layout_gravity="center_vertical|start"
+                    android:background="?attr/selectableItemBackground"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/_20dp"
+                        android:layout_height="@dimen/_20dp"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_ds_sort_down"
+                        app:tint="@color/ds_text_secondary" />
+
+                    <TextView
+                        android:id="@+id/sort_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8dp"
+                        android:textAppearance="@style/TextAppearance.DS.Subtitle1"
+                        tools:text="@string/home_sort_date" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_16dp"
+                        android:layout_height="@dimen/_16dp"
+                        android:layout_marginStart="@dimen/_8dp"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_ds_arrow_down"
+                        app:tint="@color/ds_text_secondary" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|end"
+                    android:background="@drawable/bg_ds_view_toggle"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/_4dp">
+
+                    <ImageButton
+                        android:id="@+id/view_list"
+                        android:layout_width="@dimen/_38dp"
+                        android:layout_height="@dimen/_34dp"
+                        android:background="@drawable/bg_ds_view_option"
+                        android:contentDescription="@string/home_view_list"
+                        android:padding="@dimen/_7dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_ds_view_list"
+                        app:tint="@color/ds_view_option" />
+
+                    <ImageButton
+                        android:id="@+id/view_grid"
+                        android:layout_width="@dimen/_38dp"
+                        android:layout_height="@dimen/_34dp"
+                        android:background="@drawable/bg_ds_view_option"
+                        android:contentDescription="@string/home_view_grid"
+                        android:padding="@dimen/_7dp"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/ic_ds_view_grid"
+                        app:tint="@color/ds_view_option" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/summary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/_16dp"
+                android:paddingEnd="@dimen/_16dp"
+                android:paddingBottom="@dimen/_8dp"
+                android:textAppearance="@style/TextAppearance.DS.Body3"
+                tools:text="0 documents · On this device" />
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/_16dp"
+        android:paddingEnd="@dimen/_16dp"
+        android:paddingBottom="@dimen/_96dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/empty_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <include
+            android:id="@+id/empty"
+            layout="@layout/view_home_empty" />
+    </androidx.core.widget.NestedScrollView>
+
+    <ProgressBar
+        android:id="@+id/loading"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="@dimen/_32dp"
+        android:layout_height="@dimen/_32dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/ds_primary"
+        android:visibility="gone" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        style="@style/Widget.DS.Fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="@dimen/_16dp"
+        android:layout_marginBottom="@dimen/_28dp"
+        android:contentDescription="@string/home_create"
+        android:src="@drawable/ic_ds_plus" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

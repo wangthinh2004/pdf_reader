@@ -5,15 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/app_background">
 
-    <!-- Optional background picture (Settings → Personalization). Hidden when turned off. -->
-    <ImageView
-        android:id="@+id/wallpaper"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:importantForAccessibility="no"
-        android:scaleType="centerCrop"
-        android:visibility="gone" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -29,8 +20,12 @@
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
+            style="@style/Widget.DS.BottomNavigation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/bg_ds_bottom_nav"
+            android:minHeight="@dimen/_80dp"
+            app:backgroundTint="@null"
             app:menu="@menu/bottom_nav" />
     </LinearLayout>
 </FrameLayout>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home, Recent, Favorites and their bottom sheets (PDF Office design). -->
+<resources>
+    <string name="home_brand_tagline">Reader, Editor &amp; Docs</string>
+    <string name="home_pro">PRO</string>
+    <string name="home_select">Select files</string>
+    <string name="home_settings">Settings</string>
+    <string name="home_search_hint">Search documents...</string>
+    <string name="home_search_clear">Clear search</string>
+
+    <string name="home_action_import">Import files</string>
+    <string name="home_action_image_to_pdf">Image to PDF</string>
+    <string name="home_action_folder">Folder</string>
+
+    <string name="home_tab_all">All</string>
+    <string name="home_tab_pdf">PDF</string>
+    <string name="home_tab_word">Word</string>
+    <string name="home_tab_excel">Excel</string>
+    <string name="home_tab_ppt">PPT</string>
+
+    <string name="home_sort_date">Date modified</string>
+    <string name="home_sort_name">Name</string>
+    <string name="home_sort_size">Size</string>
+    <string name="home_sort_by">Sort by</string>
+    <string name="home_view_list">List view</string>
+    <string name="home_view_grid">Grid view</string>
+    <plurals name="home_summary">
+        <item quantity="one">%d document · On this device</item>
+        <item quantity="other">%d documents · On this device</item>
+    </plurals>
+    <plurals name="home_summary_recent">
+        <item quantity="one">%d document · Recently opened</item>
+        <item quantity="other">%d documents · Recently opened</item>
+    </plurals>
+
+    <string name="home_empty_title">Your workspace starts here</string>
+    <string name="home_empty_body">Add your first PDF or Office file. Keep everything organized in one place.</string>
+    <string name="home_empty_cta">Create Now</string>
+    <string name="home_access_title">Show all your documents</string>
+    <string name="home_access_body">Allow file access so PDF Office can list every PDF, Word, Excel and PowerPoint file on this device. Files never leave your phone.</string>
+    <string name="home_access_cta">Allow access</string>
+    <string name="home_no_match_title">No matching documents</string>
+    <string name="home_no_match_body">Try another name or file type.</string>
+    <string name="home_create">Create</string>
+
+    <string name="home_select_count">%d selected</string>
+    <string name="home_select_close">Close selection</string>
+    <string name="home_select_share">Share selected</string>
+    <string name="home_select_delete">Delete selected</string>
+    <string name="home_delete_many_title">Delete %d files?</string>
+    <string name="home_delete_many_failed">%d files couldn\'t be deleted</string>
+
+    <string name="doc_today">Today, %s</string>
+    <string name="doc_yesterday">Yesterday</string>
+    <string name="doc_star">Add to favorites</string>
+    <string name="doc_unstar">Remove from favorites</string>
+    <string name="doc_more">More options</string>
+    <string name="coming_soon">Coming soon</string>
+
+    <!-- Create sheet -->
+    <string name="create_title">Create PDF</string>
+    <string name="create_import_files">Import Files</string>
+    <string name="create_scan_pdf">Scan PDF</string>
+    <string name="create_import">Import</string>
+    <string name="create_files">Files</string>
+    <string name="create_images">Images</string>
+    <string name="create_scan">Scan</string>
+    <string name="create_convert">Convert</string>
+    <string name="create_pdf_to_image">PDF to Image</string>
+    <string name="create_pdf_to_image_sub">Pages as images</string>
+    <string name="create_image_to_pdf">Image to PDF</string>
+    <string name="create_image_to_pdf_sub">Combine photos</string>
+    <string name="create_pdf_to_word">PDF to Word</string>
+    <string name="create_pdf_to_word_sub">Editable document</string>
+    <string name="create_word_to_pdf">Word to PDF</string>
+    <string name="create_word_to_pdf_sub">Convert documents</string>
+
+    <!-- File actions sheet -->
+    <string name="doc_share">Share</string>
+    <string name="doc_rename">Rename</string>
+    <string name="doc_details">Details</string>
+    <string name="doc_move">Move to</string>
+    <string name="doc_delete">Delete</string>
+    <string name="doc_save_copy">Save as Copy</string>
+    <string name="doc_rename_title">Rename file</string>
+    <string name="doc_rename_hint">File name</string>
+    <string name="doc_rename_invalid">Use a name without / \\ : * ? \" &lt; &gt; |</string>
+    <string name="doc_rename_failed">Couldn\'t rename this file</string>
+    <string name="doc_delete_title">Delete this file?</string>
+    <string name="doc_delete_body">%s will be removed from this device.</string>
+    <string name="doc_delete_failed">Couldn\'t delete this file</string>
+    <string name="doc_deleted">File deleted</string>
+    <string name="doc_copied">Copy saved to %s</string>
+    <string name="doc_copy_failed">Couldn\'t save a copy</string>
+    <string name="doc_detail_type">Type</string>
+    <string name="doc_detail_size">Size</string>
+    <string name="doc_detail_modified">Modified</string>
+    <string name="doc_detail_location">Location</string>
+    <string name="doc_unknown">Unknown</string>
+
+    <!-- Recent & Favorites tabs -->
+    <string name="nav_recent">Recent</string>
+    <string name="nav_favorites">Favorites</string>
+    <string name="recent_title">Recent</string>
+    <string name="recent_empty_title">No recent files</string>
+    <string name="recent_empty_body">Files you open or create show up here.</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_empty_title">No favorites yet</string>
+    <plurals name="favorites_summary">
+        <item quantity="one">%d starred document</item>
+        <item quantity="other">%d starred documents</item>
+    </plurals>
+    <string name="favorites_empty_body">Tap the star on a file to keep it here.</string>
+</resources>

@@ -1,7 +1,5 @@
 package com.chethan616.clearpdf.ui.fragment.onboarding
 
-import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -10,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -31,7 +28,6 @@ import com.chethan616.clearpdf.ui.common.color
 import com.chethan616.clearpdf.ui.common.dp
 import com.chethan616.clearpdf.ui.common.tint
 import com.chethan616.clearpdf.ui.common.tintBackground
-import com.chethan616.clearpdf.ui.fragment.settings.bindToggle
 import com.chethan616.clearpdf.ui.fragment.tool.ToolUi
 import com.chethan616.clearpdf.ui.utils.LocaleHelper
 import com.google.android.material.button.MaterialButton
@@ -48,16 +44,6 @@ class OnboardingFragment : Fragment() {
 
     private var _binding: FragmentOnboardingBinding? = null
     private val binding get() = _binding!!
-
-    private val wallpaperPicker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
-        if (uri != null) {
-            val ctx = requireContext()
-            runCatching { ctx.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
-            AppSettingsManager.setCustomWallpaper(ctx, uri.toString())
-            AppSettingsManager.setShowWallpaper(ctx, true)
-            (requireActivity() as MainActivity).refreshWallpaper()
-        }
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentOnboardingBinding.inflate(inflater, container, false)
@@ -260,29 +246,6 @@ class OnboardingFragment : Fragment() {
         group.addOnButtonCheckedListener { _, id, checked -> if (checked) ids[id]?.let(activity::setThemeMode) }
         card.addView(group)
 
-        val toggle = com.chethan616.clearpdf.databinding.ViewSettingToggleBinding.inflate(layoutInflater, card, false)
-        val pick = MaterialButton(ctx).apply {
-            setText(R.string.settings_bg_gallery)
-            setIconResource(R.drawable.ic_photo_library)
-            ToolUi.primaryButton(this, ctx.color(R.color.accent_indigo))
-            setOnClickListener { wallpaperPicker.launch(arrayOf("image/*")) }
-            isVisible = AppSettingsManager.getShowWallpaper(ctx)
-        }
-        bindToggle(
-            ctx, toggle, R.drawable.ic_wallpaper,
-            getString(R.string.settings_background), getString(R.string.settings_background_desc),
-            AppSettingsManager.getShowWallpaper(ctx)
-        ) {
-            AppSettingsManager.setShowWallpaper(ctx, it)
-            pick.isVisible = it
-            activity.refreshWallpaper()
-        }
-        card.addView(toggle.root, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-            topMargin = ctx.dp(12)
-        })
-        card.addView(pick, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
-            topMargin = ctx.dp(8)
-        })
         return card
     }
 

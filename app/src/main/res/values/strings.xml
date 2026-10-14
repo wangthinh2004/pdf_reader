@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ClearPDF</string>
+    <string name="app_name">PDF Office</string>
 
     <!-- App Shortcuts -->
     <string name="shortcut_open_short">Open PDF</string>
@@ -19,7 +19,7 @@
     <string name="onboarding_language_subtitle">Personalize your experience</string>
     <string name="onboarding_language_label">Language</string>
     <string name="onboarding_appearance_title">Make it yours</string>
-    <string name="onboarding_appearance_subtitle">Pick a theme and a background. Change both any time in Settings.</string>
+    <string name="onboarding_appearance_subtitle">Pick a theme. Change it any time in Settings.</string>
     <string name="onboarding_files_title">Open anything</string>
     <string name="onboarding_files_subtitle">PDFs, docs, sheets, slides, images &amp; more</string>
     <string name="onboarding_features_title">Powerful tools</string>
@@ -42,7 +42,7 @@
     <string name="settings_replay_onboarding_desc">Replay the welcome tour</string>
 
     <!-- Home Screen -->
-    <string name="home_title">ClearPDF</string>
+    <string name="home_title">PDF Office</string>
     <string name="home_workspace_label">PDF WORKSPACE</string>
     <string name="home_tagline">PDF work, simply elegant.</string>
     <string name="home_subtitle">Open, scan, and organize your files &#8212; privately on your device.</string>
@@ -98,8 +98,6 @@
     <string name="watermark_apply">Apply Watermark</string>
     <string name="watermark_applying">Applying…</string>
     <string name="settings_personalization">Personalization</string>
-    <string name="settings_background">Background</string>
-    <string name="settings_background_desc">Show the wallpaper image behind the app</string>
     <string name="settings_privacy_policy">Privacy Policy</string>
     <string name="settings_version_label">Version</string>
     <string name="tool_extract_pages">Extract Pages</string>
@@ -332,7 +330,6 @@
     <string name="settings_default_path">Downloads / ClearPDF</string>
     <string name="settings_change_folder">Change Folder</string>
     <string name="settings_reset">Reset</string>
-    <string name="settings_bg_gallery">Gallery</string>
     <string name="settings_license_notice">Licensed under the Apache License, Version 2.0.\nYou may obtain a copy at apache.org/licenses/LICENSE-2.0</string>
     <string name="settings_license_author">by %1$s</string>
     <string name="language_english">English</string>

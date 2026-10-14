@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Dark variants of the PDF Office tokens. The Figma file has no dark mode yet; these keep the
+     same hues on dark surfaces until it does. -->
+<resources>
+    <color name="ds_text_primary">#FFE9EEF5</color>
+    <color name="ds_text_secondary">#FF9AA6B6</color>
+    <color name="ds_nav_inactive">#FF9AA6B6</color>
+
+    <color name="ds_primary">#FF4BA3FF</color>
+    <color name="ds_primary_container">#FF14304F</color>
+    <color name="ds_pro_text">#FF8EC5FF</color>
+
+    <color name="ds_background">#FF0F1620</color>
+    <color name="ds_surface">#FF161F2B</color>
+    <color name="ds_surface_muted">#FF1E2936</color>
+    <color name="ds_header_gradient_top">#FF132235</color>
+    <color name="ds_border_search">#FF2E4257</color>
+    <color name="ds_divider">#FF243140</color>
+    <color name="ds_sheet_handle">#FF3A4757</color>
+    <color name="ds_scrim">#80000000</color>
+
+    <color name="ds_action_teal_bg">#FF1F3B3C</color>
+    <color name="ds_action_teal_text">#FF9FD0D1</color>
+    <color name="ds_action_purple_bg">#FF2E2547</color>
+    <color name="ds_action_purple_text">#FFCDB7F5</color>
+    <color name="ds_action_orange_bg">#FF3E3120</color>
+    <color name="ds_action_orange_text">#FFF5D29C</color>
+    <color name="ds_action_border">#FF161F2B</color>
+
+    <color name="ds_kind_pdf_bg">#FF3A1F24</color>
+    <color name="ds_kind_pdf">#FFFF7A82</color>
+    <color name="ds_kind_word_bg">#FF1A2B45</color>
+    <color name="ds_kind_word">#FF6EA8F0</color>
+    <color name="ds_kind_excel_bg">#FF183326</color>
+    <color name="ds_kind_excel">#FF5CC08D</color>
+    <color name="ds_kind_ppt_bg">#FF3B2618</color>
+    <color name="ds_kind_ppt">#FFF0965E</color>
+    <color name="ds_kind_other_bg">#FF1E2936</color>
+    <color name="ds_kind_other">#FF9AA6B6</color>
+    <color name="ds_kind_pdf_icon">#FFFF7A82</color>
+    <color name="ds_kind_word_icon">#FF6EA8F0</color>
+    <color name="ds_kind_excel_icon">#FF5CC08D</color>
+    <color name="ds_kind_ppt_icon">#FFF0965E</color>
+
+    <color name="ds_illus_backdrop">#FF14304F</color>
+    <color name="ds_illus_companion">#FF1D3E63</color>
+    <color name="ds_illus_companion_border">#FF3D6FA3</color>
+    <color name="ds_illus_page">#FF161F2B</color>
+    <color name="ds_illus_page_border">#FF3D6FA3</color>
+    <color name="ds_illus_line">#FF2C4D73</color>
+    <color name="ds_illus_badge">#FF4A5A6C</color>
+</resources>

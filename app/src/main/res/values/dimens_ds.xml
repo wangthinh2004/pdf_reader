@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Design-system sizes read from code. The _Ndp scale comes from the ads SDK, whose R class the
+     app can't reference (nonTransitiveRClass), so code uses these aliases. -->
+<resources>
+    <dimen name="ds_screen_padding">@dimen/_16dp</dimen>
+    <!-- Grid cards carry 6 each side (12 between cards), so the list pads 10 to keep 16 at the edge. -->
+    <dimen name="ds_grid_padding">@dimen/_10dp</dimen>
+    <dimen name="ds_thumbnail_width">@dimen/_122dp</dimen>
+</resources>

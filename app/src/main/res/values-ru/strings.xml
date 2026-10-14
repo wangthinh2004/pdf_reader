@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ClearPDF</string>
+    <string name="app_name">PDF Office</string>
 
     <!-- App Shortcuts -->
     <string name="shortcut_open_short">Открыть PDF</string>
@@ -19,7 +19,7 @@
     <string name="onboarding_language_subtitle">Настройте приложение под себя</string>
     <string name="onboarding_language_label">Язык</string>
     <string name="onboarding_appearance_title">Сделайте его своим</string>
-    <string name="onboarding_appearance_subtitle">Выберите тему и фон. Изменить их можно в любой момент в настройках.</string>
+    <string name="onboarding_appearance_subtitle">Выберите тему. Изменить её можно в любой момент в настройках.</string>
     <string name="onboarding_files_title">Открывайте что угодно</string>
     <string name="onboarding_files_subtitle">PDF, документы, таблицы, презентации, изображения &amp; другое</string>
     <string name="onboarding_features_title">Мощные инструменты</string>
@@ -42,7 +42,7 @@
     <string name="settings_replay_onboarding_desc">Показать приветственный тур ещё раз</string>
 
     <!-- Home Screen -->
-    <string name="home_title">ClearPDF</string>
+    <string name="home_title">PDF Office</string>
     <string name="home_workspace_label">РАБОЧАЯ ОБЛАСТЬ PDF</string>
     <string name="home_tagline">Работа с PDF — просто и элегантно.</string>
     <string name="home_subtitle">Открывайте, сканируйте и систематизируйте файлы &#8212; приватно, на вашем устройстве.</string>
@@ -94,8 +94,6 @@
     <string name="watermark_apply">Применить водяной знак</string>
     <string name="watermark_applying">Применение…</string>
     <string name="settings_personalization">Персонализация</string>
-    <string name="settings_background">Фон</string>
-    <string name="settings_background_desc">Показывать фоновое изображение за приложением</string>
     <string name="settings_privacy_policy">Политика конфиденциальности</string>
     <string name="settings_version_label">Версия</string>
     <string name="tool_extract_pages">Извлечь страницы</string>
@@ -326,7 +324,6 @@
     <string name="settings_default_path">Downloads / ClearPDF</string>
     <string name="settings_change_folder">Изменить папку</string>
     <string name="settings_reset">Сбросить</string>
-    <string name="settings_bg_gallery">Галерея</string>
     <string name="settings_license_notice">Используется по лицензии Apache License, версия 2.0.\nКопию лицензии можно получить на apache.org/licenses/LICENSE-2.0</string>
     <string name="settings_license_author">от %1$s</string>
     <string name="language_english">Английский</string>

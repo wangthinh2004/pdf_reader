@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ClearPDF</string>
+    <string name="app_name">PDF Office</string>
 
     <!-- App Shortcuts -->
     <string name="shortcut_open_short">Apri PDF</string>
@@ -19,7 +19,7 @@
     <string name="onboarding_language_subtitle">Personalizza la tua esperienza</string>
     <string name="onboarding_language_label">Lingua</string>
     <string name="onboarding_appearance_title">Rendilo tuo</string>
-    <string name="onboarding_appearance_subtitle">Scegli un tema e uno sfondo. Potrai cambiarli entrambi su Impostazioni.</string>
+    <string name="onboarding_appearance_subtitle">Scegli un tema. Potrai cambiarlo su Impostazioni.</string>
     <string name="onboarding_files_title">Apri qualsiasi cosa</string>
     <string name="onboarding_files_subtitle">PDF, documenti, fogli elettronici, diapositive, immagini &amp; altro</string>
     <string name="onboarding_features_title">Potenti strumenti</string>
@@ -42,7 +42,7 @@
     <string name="settings_replay_onboarding_desc">Riproduce nuovamente la schermata di benvenuto</string>
 
     <!-- Home Screen -->
-    <string name="home_title">ClearPDF</string>
+    <string name="home_title">PDF Office</string>
     <string name="home_workspace_label">SPAZIO DI LAVORO PDF</string>
     <string name="home_tagline">Lavora su PDF, semplicemente elegante.</string>
     <string name="home_subtitle">Apri, scansiona e organizza i tuoi file &#8212; in privato sul tuo dispositivo.</string>
@@ -94,8 +94,6 @@
     <string name="watermark_apply">Applica Filigrana</string>
     <string name="watermark_applying">Applicazione…</string>
     <string name="settings_personalization">Personalizzazione</string>
-    <string name="settings_background">Sfondo</string>
-    <string name="settings_background_desc">Mostra l\'immagine di sfondo dietro l\'app</string>
     <string name="settings_privacy_policy">Informativa sulla Privacy</string>
     <string name="settings_version_label">Versione</string>
     <string name="tool_extract_pages">Estrai Pagine</string>
@@ -307,7 +305,6 @@
     <string name="settings_default_path">Downloads / ClearPDF</string>
     <string name="settings_change_folder">Cambia Cartella</string>
     <string name="settings_reset">Reimposta</string>
-    <string name="settings_bg_gallery">Galleria</string>
     <string name="settings_license_notice">Sotto licenza Apache License, Versione 2.0.\nPuoi ottenere una copia su apache.org/licenses/LICENSE-2.0</string>
     <string name="settings_license_author">di %1$s</string>
     <string name="language_english">Inglese</string>

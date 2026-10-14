@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Square action tile with a caption (sheet "Import" row, file actions): 56 tile, 8 gap, Subtitle/2.
+     The cell is 84 wide (Figma pitch); the label is 96 so "Save as Copy" isn't cut, and may draw
+     past the cell, so parents set clipChildren=false. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Widget.DS.SheetAction">
+
+    <FrameLayout
+        android:layout_width="@dimen/_56dp"
+        android:layout_height="@dimen/_56dp"
+        android:background="@drawable/bg_ds_tile">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/_24dp"
+            android:layout_height="@dimen/_24dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            app:tint="@color/ds_text_secondary"
+            tools:src="@drawable/ic_ios_share" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/label"
+        android:layout_width="@dimen/_96dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_8dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textAppearance="@style/TextAppearance.DS.Subtitle2"
+        tools:text="Share" />
+</LinearLayout>

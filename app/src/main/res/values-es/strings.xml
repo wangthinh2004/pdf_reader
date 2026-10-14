@@ -8,7 +8,7 @@
     <string name="viewer_bookmark_add">Guardar esta página</string>
     <string name="viewer_bookmark_remove">Quitar marcador</string>
     <string name="viewer_bookmark_page">Página %1$d</string>
-    <string name="app_name">ClearPDF</string>
+    <string name="app_name">PDF Office</string>
 
     <!-- Accesos directos de la app -->
     <string name="shortcut_open_short">Abrir PDF</string>
@@ -27,7 +27,7 @@
     <string name="onboarding_language_subtitle">Personaliza tu experiencia</string>
     <string name="onboarding_language_label">Idioma</string>
     <string name="onboarding_appearance_title">Hazlo tuyo</string>
-    <string name="onboarding_appearance_subtitle">Elige un tema y un fondo. Cambia ambos cuando quieras en Ajustes.</string>
+    <string name="onboarding_appearance_subtitle">Elige un tema. Cámbialo cuando quieras en Ajustes.</string>
     <string name="onboarding_files_title">Abre cualquier cosa</string>
     <string name="onboarding_files_subtitle">PDFs, documentos, hojas de cálculo, presentaciones, imágenes y más</string>
     <string name="onboarding_features_title">Herramientas potentes</string>
@@ -40,7 +40,7 @@
     <string name="settings_replay_onboarding_desc">Repetir el recorrido de bienvenida</string>
 
     <!-- Pantalla de inicio -->
-    <string name="home_title">ClearPDF</string>
+    <string name="home_title">PDF Office</string>
     <string name="home_workspace_label">ESPACIO DE TRABAJO PDF</string>
     <string name="home_tagline">Trabajo en PDF, con sencilla elegancia.</string>
     <string name="home_subtitle">Abre, escanea y organiza tus archivos &#8212; en privado, en tu dispositivo.</string>
@@ -92,8 +92,6 @@
     <string name="watermark_apply">Aplicar marca de agua</string>
     <string name="watermark_applying">Aplicando…</string>
     <string name="settings_personalization">Personalización</string>
-    <string name="settings_background">Fondo</string>
-    <string name="settings_background_desc">Mostrar la imagen de fondo detrás de la app</string>
     <string name="settings_privacy_policy">Política de privacidad</string>
     <string name="settings_version_label">Versión</string>
     <string name="tool_extract_pages">Extraer páginas</string>
@@ -306,7 +304,6 @@
     <string name="settings_default_path">Descargas / ClearPDF</string>
     <string name="settings_change_folder">Cambiar carpeta</string>
     <string name="settings_reset">Restablecer</string>
-    <string name="settings_bg_gallery">Galería</string>
     <string name="settings_license_notice">Licenciado bajo la Apache License, versión 2.0.\nPuedes obtener una copia en apache.org/licenses/LICENSE-2.0</string>
     <string name="settings_license_author">por %1$s</string>
     <string name="language_english">Inglés</string>

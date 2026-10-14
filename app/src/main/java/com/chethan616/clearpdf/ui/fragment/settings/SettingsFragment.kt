@@ -64,15 +64,6 @@ class SettingsFragment : Fragment() {
         officeSection?.install()
     }
 
-    private val wallpaperPicker = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
-        if (uri != null) {
-            val ctx = requireContext()
-            runCatching { ctx.contentResolver.takePersistableUriPermission(uri, Intent.FLAG_GRANT_READ_URI_PERMISSION) }
-            AppSettingsManager.setCustomWallpaper(ctx, uri.toString())
-            (requireActivity() as MainActivity).refreshWallpaper()
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
@@ -80,6 +71,7 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.root.applySystemBarPadding(top = true)
+        binding.back.setOnClickListener { findNavController().navigateUp() }
         val ctx = requireContext()
         val activity = requireActivity() as MainActivity
 
@@ -165,19 +157,7 @@ class SettingsFragment : Fragment() {
         }
 
         // ── Personalization ──
-        header(binding.personalHeader, R.drawable.ic_wallpaper, R.string.settings_personalization, R.color.app_text)
-        toggle(binding.showWallpaper, R.drawable.ic_wallpaper, R.string.settings_background, R.string.settings_background_desc,
-            AppSettingsManager.getShowWallpaper(ctx)) {
-            AppSettingsManager.setShowWallpaper(ctx, it)
-            binding.wallpaperActions.isVisible = it
-            activity.refreshWallpaper()
-        }
-        binding.wallpaperActions.isVisible = AppSettingsManager.getShowWallpaper(ctx)
-        binding.pickWallpaper.setOnClickListener { wallpaperPicker.launch(arrayOf("image/*")) }
-        binding.resetWallpaper.setOnClickListener {
-            AppSettingsManager.clearCustomWallpaper(ctx)
-            activity.refreshWallpaper()
-        }
+        header(binding.personalHeader, R.drawable.ic_auto_awesome, R.string.settings_personalization, R.color.app_text)
         binding.replayOnboarding.setOnClickListener {
             // Clear the flag too, so quitting the replay early doesn't leave the tour marked "seen".
             OnboardingManager.resetOnboarding(ctx)

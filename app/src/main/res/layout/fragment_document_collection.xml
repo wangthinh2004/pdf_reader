@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Recent and Favorites tabs: title, summary and the Home file rows. Not in the Figma file yet,
+     so it reuses the Home header styles and rows. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_ds_home_header"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_68dp"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/_16dp"
+        android:paddingEnd="@dimen/_16dp"
+        android:textAppearance="@style/TextAppearance.DS.Heading2"
+        tools:text="Recent" />
+
+    <TextView
+        android:id="@+id/summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/_16dp"
+        android:paddingEnd="@dimen/_16dp"
+        android:paddingBottom="@dimen/_8dp"
+        android:textAppearance="@style/TextAppearance.DS.Body3"
+        tools:text="3 documents" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/_16dp"
+            android:paddingEnd="@dimen/_16dp"
+            android:paddingBottom="@dimen/_24dp" />
+
+        <LinearLayout
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/_24dp"
+            android:paddingTop="@dimen/_96dp"
+            android:paddingEnd="@dimen/_24dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/empty_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.DS.Heading3"
+                tools:text="No recent files" />
+
+            <TextView
+                android:id="@+id/empty_body"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8dp"
+                android:gravity="center"
+                android:textAppearance="@style/TextAppearance.DS.Body2"
+                android:textColor="@color/ds_text_secondary"
+                tools:text="Files you open or create show up here." />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

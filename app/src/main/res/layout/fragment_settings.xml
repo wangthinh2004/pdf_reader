@@ -6,15 +6,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="64dp"
         android:gravity="center_vertical"
-        android:paddingStart="@dimen/screen_padding"
-        android:paddingEnd="@dimen/screen_padding"
-        android:text="@string/settings_title"
-        android:textAppearance="@style/TextAppearance.ClearPDF.ScreenTitle" />
+        android:minHeight="64dp"
+        android:orientation="horizontal"
+        android:paddingStart="4dp"
+        android:paddingEnd="@dimen/screen_padding">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/app_text" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/settings_title"
+            android:textAppearance="@style/TextAppearance.ClearPDF.ScreenTitle" />
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll"
@@ -306,47 +322,11 @@
                     android:id="@+id/personal_header"
                     layout="@layout/view_section_header" />
 
-                <include
-                    android:id="@+id/show_wallpaper"
-                    layout="@layout/view_setting_toggle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp" />
-
-                <LinearLayout
-                    android:id="@+id/wallpaper_actions"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="46dp"
-                    android:layout_marginTop="8dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/pick_wallpaper"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/settings_bg_gallery"
-                        app:backgroundTint="@color/accent_indigo"
-                        app:icon="@drawable/ic_photo_library" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/reset_wallpaper"
-                        style="@style/Widget.ClearPDF.IconButton.Filled"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="10dp"
-                        android:contentDescription="@string/settings_reset"
-                        app:backgroundTint="@color/app_surface_variant"
-                        app:icon="@drawable/ic_refresh" />
-                </LinearLayout>
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/replay_onboarding"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/settings_replay_onboarding"
                     app:backgroundTint="@color/accent_purple"
                     app:icon="@drawable/ic_auto_awesome" />

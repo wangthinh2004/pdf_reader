@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PDF Office design system: Inter text styles (names follow the Figma styles) and widgets.
+     Sizes use the _Ndp/_Nsp scale, 1:1 with Figma px at a 360dp-wide screen. -->
+<resources>
+
+    <!-- ── Text ── -->
+
+    <style name="TextAppearance.DS" parent="TextAppearance.Material3.BodyMedium">
+        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="fontFamily">@font/inter_regular</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/ds_text_primary</item>
+        <item name="android:letterSpacing">0</item>
+    </style>
+
+    <!-- Heading/2: Bold 20/28 -->
+    <style name="TextAppearance.DS.Heading2">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">@dimen/_20sp</item>
+        <item name="lineHeight">@dimen/_28sp</item>
+    </style>
+
+    <!-- Heading/3: Bold 18/26 -->
+    <style name="TextAppearance.DS.Heading3">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">@dimen/_18sp</item>
+        <item name="lineHeight">@dimen/_26sp</item>
+        <item name="android:letterSpacing">0.0015</item>
+    </style>
+
+    <!-- Subtitle/1: SemiBold 16/24 -->
+    <style name="TextAppearance.DS.Subtitle1">
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">@dimen/_16sp</item>
+        <item name="lineHeight">@dimen/_24sp</item>
+        <item name="android:letterSpacing">0.0015</item>
+    </style>
+
+    <!-- Subtitle/2: SemiBold 14/20 -->
+    <style name="TextAppearance.DS.Subtitle2">
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">@dimen/_14sp</item>
+        <item name="lineHeight">@dimen/_20sp</item>
+    </style>
+
+    <!-- Subtitle/3: SemiBold 12/16 -->
+    <style name="TextAppearance.DS.Subtitle3">
+        <item name="android:fontFamily">@font/inter_semibold</item>
+        <item name="fontFamily">@font/inter_semibold</item>
+        <item name="android:textSize">@dimen/_12sp</item>
+        <item name="lineHeight">@dimen/_16sp</item>
+        <item name="android:letterSpacing">0.002</item>
+    </style>
+
+    <!-- Body/2: Regular 14/20 -->
+    <style name="TextAppearance.DS.Body2">
+        <item name="android:textSize">@dimen/_14sp</item>
+        <item name="lineHeight">@dimen/_20sp</item>
+    </style>
+
+    <!-- Body/3: Regular 12/16 -->
+    <style name="TextAppearance.DS.Body3">
+        <item name="android:textSize">@dimen/_12sp</item>
+        <item name="lineHeight">@dimen/_16sp</item>
+        <item name="android:letterSpacing">0.002</item>
+        <item name="android:textColor">@color/ds_text_secondary</item>
+    </style>
+
+    <!-- Captions without a named Figma style -->
+    <style name="TextAppearance.DS.Caption">
+        <item name="android:textSize">@dimen/_11sp</item>
+        <item name="android:textColor">@color/ds_text_secondary</item>
+    </style>
+
+    <style name="TextAppearance.DS.Badge">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="fontFamily">@font/inter_bold</item>
+        <item name="android:textSize">@dimen/_10sp</item>
+    </style>
+
+    <style name="TextAppearance.DS.Tab">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">@dimen/_14sp</item>
+        <item name="lineHeight">@dimen/_20sp</item>
+        <item name="android:textColor">@color/ds_tab_text</item>
+    </style>
+
+    <style name="TextAppearance.DS.Nav">
+        <item name="android:fontFamily">@font/inter_medium</item>
+        <item name="fontFamily">@font/inter_medium</item>
+        <item name="android:textSize">@dimen/_12sp</item>
+    </style>
+
+    <style name="TextAppearance.DS.Nav.Active">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="fontFamily">@font/inter_bold</item>
+    </style>
+
+    <!-- ── Widgets ── -->
+
+    <style name="Widget.DS.BottomNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@color/ds_nav_item</item>
+        <item name="itemTextColor">@color/ds_nav_item</item>
+        <item name="itemIconSize">@dimen/_28dp</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.DS.BottomNavigation.Indicator</item>
+        <item name="itemTextAppearanceInactive">@style/TextAppearance.DS.Nav</item>
+        <item name="itemTextAppearanceActive">@style/TextAppearance.DS.Nav.Active</item>
+        <item name="itemTextAppearanceActiveBoldEnabled">false</item>
+        <item name="itemPaddingTop">@dimen/_12dp</item>
+        <item name="itemPaddingBottom">@dimen/_12dp</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <style name="Widget.DS.BottomNavigation.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/ds_primary_container</item>
+        <item name="android:width">@dimen/_62dp</item>
+        <item name="android:height">@dimen/_32dp</item>
+        <item name="marginHorizontal">0dp</item>
+    </style>
+
+    <!-- Full-width primary action (Figma "Action button"): 48 high, radius 12, Heading/3 white. -->
+    <style name="Widget.DS.Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:minHeight">@dimen/_48dp</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="backgroundTint">@color/ds_primary</item>
+        <item name="android:textColor">@color/ds_text_on_primary</item>
+        <item name="android:textAppearance">@style/TextAppearance.DS.Heading3</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="cornerRadius">@dimen/_12dp</item>
+    </style>
+
+    <style name="Widget.DS.Fab" parent="Widget.Material3.FloatingActionButton.Primary">
+        <item name="backgroundTint">@color/ds_primary</item>
+        <item name="tint">@color/ds_text_on_primary</item>
+        <item name="fabCustomSize">@dimen/_56dp</item>
+        <item name="maxImageSize">@dimen/_32dp</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.DS.Full</item>
+    </style>
+
+    <style name="ShapeAppearance.DS.Full" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <!-- Bottom sheets: white, 20 top corners, no Material tint. -->
+    <style name="ThemeOverlay.DS.BottomSheet" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.DS.BottomSheet</item>
+        <!-- Material 3 tints the sheet from these; the design wants plain surface. -->
+        <item name="colorSurfaceContainerLow">@color/ds_surface</item>
+        <item name="elevationOverlayEnabled">false</item>
+        <item name="android:backgroundDimAmount">0.3</item>
+        <item name="android:navigationBarColor">@color/ds_surface</item>
+    </style>
+
+    <style name="Widget.DS.BottomSheet" parent="Widget.Material3.BottomSheet.Modal">
+        <item name="backgroundTint">@color/ds_surface</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.DS.Sheet</item>
+    </style>
+
+    <style name="ShapeAppearance.DS.Sheet" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">@dimen/_20dp</item>
+        <item name="cornerSizeTopRight">@dimen/_20dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+    <!-- Square action tile with a caption below (sheet "Import" / file actions). -->
+    <style name="Widget.DS.SheetAction" parent="">
+        <item name="android:layout_width">@dimen/_84dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clipChildren">false</item>
+    </style>
+
+    <!-- Large "Create PDF" tile (Figma 160×120, radius 20). -->
+    <style name="Widget.DS.CreateTile" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/_120dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/bg_ds_tile_large</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    <!-- Home quick action (Figma "Search" 104×52): label centred near the bottom. -->
+    <style name="Widget.DS.QuickAction" parent="">
+        <item name="android:layout_width">@dimen/_104dp</item>
+        <item name="android:layout_height">@dimen/_52dp</item>
+        <item name="android:gravity">bottom|center_horizontal</item>
+        <item name="android:paddingBottom">@dimen/_10dp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textAppearance">@style/TextAppearance.DS.Subtitle3</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
+
+    <!-- Home file-type tab: 60 wide, underline when selected. -->
+    <style name="Widget.DS.FilterTab" parent="">
+        <item name="android:layout_width">@dimen/_60dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:background">@drawable/bg_ds_filter_tab</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:textAppearance">@style/TextAppearance.DS.Tab</item>
+    </style>
+</resources>

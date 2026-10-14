@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Convert tool card (Figma "Tool card" 19:3914): 68 high, 22 icon, title + subtitle. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_68dp"
+    android:background="@drawable/bg_ds_tile"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="@dimen/_10dp">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/_22dp"
+        android:layout_height="@dimen/_22dp"
+        android:importantForAccessibility="no"
+        app:tint="@color/ds_primary"
+        tools:src="@drawable/ic_ds_scissors" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textAppearance="@style/TextAppearance.DS.Subtitle2"
+            tools:text="PDF to Image" />
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3dp"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textColor="@color/ds_text_secondary"
+            android:textSize="@dimen/_10sp"
+            tools:text="Pages as images" />
+    </LinearLayout>
+</LinearLayout>

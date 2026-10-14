@@ -2,7 +2,6 @@ package com.chethan616.clearpdf
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -23,13 +22,11 @@ import com.chethan616.clearpdf.ui.common.AppNavigator
 import com.chethan616.clearpdf.ui.utils.LocaleHelper
 import com.chethan616.clearpdf.ui.utils.StarPromptEventBus
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 /**
  * The single Activity. Hosts every screen as a Fragment in [R.navigation.nav_graph] and shows the
- * bottom navigation on the three main tabs (Home, Tools, Settings).
+ * bottom navigation on the four main tabs (Home, Recent, Favorites, Tools).
  */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -84,7 +81,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupBottomNav()
-        refreshWallpaper()
         setupStarPrompt(firstStart = savedInstanceState == null)
     }
 
@@ -95,7 +91,7 @@ class MainActivity : AppCompatActivity() {
 
     // ── Bottom navigation ─────────────────────────────────────────────────────────────────────
 
-    private val tabDestinations = setOf(R.id.home, R.id.tools, R.id.settings)
+    private val tabDestinations = setOf(R.id.home, R.id.recent, R.id.favorites, R.id.tools)
 
     private fun setupBottomNav() {
         val nav = binding.bottomNav
@@ -144,36 +140,6 @@ class MainActivity : AppCompatActivity() {
         LocaleHelper.applyLocale(this, normalized, recreate = false, updateAppCompat = false)
         recreate()
     }
-
-    /** Shows the built-in or user-picked background picture, or hides it when turned off. */
-    fun refreshWallpaper() {
-        val view = binding.wallpaper
-        if (!AppSettingsManager.getShowWallpaper(this)) {
-            view.isVisible = false
-            view.setImageDrawable(null)
-            return
-        }
-        view.isVisible = true
-        val custom = AppSettingsManager.getCustomWallpaper(this)
-        if (custom == null) {
-            view.setImageResource(if (isNightMode()) R.drawable.wallpaper_dark else R.drawable.wallpaper_light)
-            return
-        }
-        lifecycleScope.launch {
-            val bitmap = withContext(Dispatchers.IO) {
-                runCatching {
-                    val opts = BitmapFactory.Options().apply { inSampleSize = 2 }
-                    contentResolver.openInputStream(Uri.parse(custom))?.use { BitmapFactory.decodeStream(it, null, opts) }
-                }.getOrNull()
-            }
-            if (bitmap != null) view.setImageBitmap(bitmap)
-            else view.setImageResource(if (isNightMode()) R.drawable.wallpaper_dark else R.drawable.wallpaper_light)
-        }
-    }
-
-    private fun isNightMode(): Boolean =
-        (resources.configuration.uiMode and android.content.res.Configuration.UI_MODE_NIGHT_MASK) ==
-            android.content.res.Configuration.UI_MODE_NIGHT_YES
 
     // ── Onboarding ────────────────────────────────────────────────────────────────────────────
 

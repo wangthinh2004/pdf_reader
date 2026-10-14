@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home header: #EFF7FF → white over the first 277 (Figma "Rectangle 1"), white below. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="@color/ds_background" />
+    </item>
+    <item android:gravity="top" android:height="@dimen/_277dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:endColor="@color/ds_background"
+                android:startColor="@color/ds_header_gradient_top" />
+        </shape>
+    </item>
+</layer-list>

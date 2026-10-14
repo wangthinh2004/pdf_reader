@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- "Create PDF" bottom sheet (Figma 10:1848). -->
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/_16dp"
+        android:paddingEnd="@dimen/_16dp"
+        android:paddingBottom="@dimen/_24dp">
+
+        <View
+            android:layout_width="@dimen/_36dp"
+            android:layout_height="@dimen/_4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_12dp"
+            android:background="@drawable/bg_ds_sheet_handle" />
+
+        <!-- Create PDF -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_29dp"
+            android:text="@string/create_title"
+            android:textAppearance="@style/TextAppearance.DS.Heading2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/create_import"
+                style="@style/Widget.DS.CreateTile">
+
+                <ImageView
+                    android:layout_width="@dimen/_40dp"
+                    android:layout_height="@dimen/_40dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_ds_create_file"
+                    app:tint="@color/ds_kind_pdf_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12dp"
+                    android:text="@string/create_import_files"
+                    android:textAppearance="@style/TextAppearance.DS.Subtitle1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/create_scan"
+                style="@style/Widget.DS.CreateTile"
+                android:layout_marginStart="@dimen/_8dp">
+
+                <ImageView
+                    android:layout_width="@dimen/_40dp"
+                    android:layout_height="@dimen/_40dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_ds_create_file"
+                    app:tint="@color/ds_kind_pdf_icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12dp"
+                    android:text="@string/create_scan_pdf"
+                    android:textAppearance="@style/TextAppearance.DS.Subtitle1" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Import -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:text="@string/create_import"
+            android:textAppearance="@style/TextAppearance.DS.Heading2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8dp"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/import_files"
+                layout="@layout/view_sheet_action" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/import_images"
+                layout="@layout/view_sheet_action" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/import_scan"
+                layout="@layout/view_sheet_action" />
+        </LinearLayout>
+
+        <!-- Convert -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:text="@string/create_convert"
+            android:textAppearance="@style/TextAppearance.DS.Heading2" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12dp"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/convert_pdf_to_image"
+                layout="@layout/view_tool_card"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_68dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/convert_image_to_pdf"
+                layout="@layout/view_tool_card"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_68dp"
+                android:layout_marginStart="@dimen/_8dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12dp"
+            android:orientation="horizontal">
+
+            <include
+                android:id="@+id/convert_pdf_to_word"
+                layout="@layout/view_tool_card"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_68dp"
+                android:layout_weight="1" />
+
+            <include
+                android:id="@+id/convert_word_to_pdf"
+                layout="@layout/view_tool_card"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_68dp"
+                android:layout_marginStart="@dimen/_8dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

@@ -3,16 +3,22 @@ package com.chethan616.clearpdf.testing
 import com.chethan616.clearpdf.domain.model.CompressionLevel
 import com.chethan616.clearpdf.domain.model.DocumentInfo
 import com.chethan616.clearpdf.domain.model.DocumentRef
+import com.chethan616.clearpdf.domain.model.LibraryAccess
+import com.chethan616.clearpdf.domain.model.LibraryDocument
 import com.chethan616.clearpdf.domain.model.OcrWord
 import com.chethan616.clearpdf.domain.model.OutputDocument
 import com.chethan616.clearpdf.domain.model.SummaryAvailability
 import com.chethan616.clearpdf.domain.repository.DocumentRepository
 import com.chethan616.clearpdf.domain.repository.EngagementRepository
+import com.chethan616.clearpdf.domain.repository.FavoritesRepository
+import com.chethan616.clearpdf.domain.repository.LibraryRepository
 import com.chethan616.clearpdf.domain.repository.OcrRepository
 import com.chethan616.clearpdf.domain.repository.PdfRepository
 import com.chethan616.clearpdf.domain.repository.RecentFilesRepository
 import com.chethan616.clearpdf.domain.repository.SettingsRepository
 import com.chethan616.clearpdf.domain.repository.SummaryRepository
+import com.chethan616.clearpdf.utils.docKindOf
+import kotlinx.coroutines.flow.MutableStateFlow
 
 val SAMPLE_REF = DocumentRef("content://docs/sample.pdf")
 val SAMPLE_DOC = DocumentInfo(SAMPLE_REF, "sample.pdf", 200 * 1024L)
@@ -34,9 +40,42 @@ class FakeSettingsRepository(var fraction: Float = 0.7f) : SettingsRepository {
     override fun defaultCompressionFraction() = fraction
 }
 
-class FakeRecentFilesRepository : RecentFilesRepository {
+class FakeRecentFilesRepository(var stored: List<LibraryDocument> = emptyList()) : RecentFilesRepository {
     val added = mutableListOf<Pair<OutputDocument, Long>>()
+    val removed = mutableListOf<DocumentRef>()
     override suspend fun add(document: OutputDocument, sizeBytes: Long) { added += document to sizeBytes }
+    override suspend fun recents() = stored
+    override suspend fun remove(ref: DocumentRef) { removed += ref }
+}
+
+fun libraryDoc(name: String, modifiedAt: Long = 0L, sizeBytes: Long = 1024L) = LibraryDocument(
+    DocumentRef("content://media/$name"), name, sizeBytes, modifiedAt, docKindOf(name)
+)
+
+class FakeLibraryRepository(
+    var access: LibraryAccess = LibraryAccess.GRANTED,
+    var documents: List<LibraryDocument> = emptyList()
+) : LibraryRepository {
+    var deleteSucceeds = true
+    val renamed = mutableListOf<Pair<LibraryDocument, String>>()
+    override fun access() = access
+    override suspend fun deviceDocuments() = documents
+    override suspend fun rename(document: LibraryDocument, newName: String): LibraryDocument {
+        renamed += document to newName
+        return document.copy(ref = DocumentRef("content://media/$newName"), name = newName)
+    }
+    override suspend fun delete(document: LibraryDocument) = deleteSucceeds
+    override suspend fun duplicate(document: LibraryDocument) =
+        OutputDocument(DocumentRef("content://out/${document.name}"), document.name, "Downloads (default)")
+}
+
+class FakeFavoritesRepository(initial: List<LibraryDocument> = emptyList()) : FavoritesRepository {
+    override val favorites = MutableStateFlow(initial)
+    override suspend fun add(document: LibraryDocument) { favorites.value = listOf(document) + favorites.value }
+    override suspend fun remove(ref: DocumentRef) { favorites.value = favorites.value.filterNot { it.ref == ref } }
+    override suspend fun replace(old: DocumentRef, renamed: LibraryDocument) {
+        favorites.value = favorites.value.map { if (it.ref == old) renamed else it }
+    }
 }
 
 class FakeEngagementRepository : EngagementRepository {

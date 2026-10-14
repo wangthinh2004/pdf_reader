@@ -110,7 +110,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/scan_features"
                     android:textAppearance="@style/TextAppearance.ClearPDF.SectionTitle"
-                    android:textSize="16sp" />
+                    android:textSize="@dimen/_16sp" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

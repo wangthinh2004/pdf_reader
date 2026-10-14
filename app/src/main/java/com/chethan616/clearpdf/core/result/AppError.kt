@@ -10,6 +10,8 @@ sealed class AppError(message: String? = null, cause: Throwable? = null) : Excep
     class QuotaExceeded : AppError("Free quota exceeded")
     /** A remote service answered with an error it described. */
     class Remote(message: String) : AppError(message)
+    /** A file name that is empty or has characters storage won't accept. */
+    class InvalidName : AppError("Invalid file name")
     class Unknown(cause: Throwable) : AppError(cause.message, cause)
 
     companion object {

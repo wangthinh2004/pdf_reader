@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PDF Office design system tokens (Figma "PDF Office"). Dark values live in values-night. -->
+<resources>
+    <!-- Text -->
+    <color name="ds_text_primary">#FF152438</color>
+    <color name="ds_text_secondary">#FF637084</color>
+    <color name="ds_text_on_primary">#FFFFFFFF</color>
+    <color name="ds_nav_inactive">#FF67717E</color>
+
+    <!-- Brand -->
+    <color name="ds_primary">#FF1689FF</color>
+    <color name="ds_primary_container">#FFEAF4FF</color>
+    <color name="ds_pro_text">#FF096ACB</color>
+
+    <!-- Surfaces & lines -->
+    <color name="ds_background">#FFFFFFFF</color>
+    <color name="ds_surface">#FFFFFFFF</color>
+    <color name="ds_surface_muted">#FFF5F7FA</color>
+    <color name="ds_header_gradient_top">#FFEFF7FF</color>
+    <color name="ds_border_search">#FFB1CDE2</color>
+    <color name="ds_divider">#FFE8EDF3</color>
+    <color name="ds_sheet_handle">#FFCBD3DD</color>
+    <color name="ds_scrim">#4D000000</color>
+
+    <!-- Quick actions -->
+    <color name="ds_action_teal_bg">#FFC1E2E3</color>
+    <color name="ds_action_teal_text">#FF446A6B</color>
+    <color name="ds_action_purple_bg">#FFE4D4FF</color>
+    <color name="ds_action_purple_text">#FF533881</color>
+    <color name="ds_action_orange_bg">#FFFFE8C4</color>
+    <color name="ds_action_orange_text">#FF694914</color>
+    <color name="ds_action_border">#FFFFFFFF</color>
+
+    <!-- Document kinds: tile background + accent (badge text, thumbnail rule) -->
+    <color name="ds_kind_pdf_bg">#FFFFF3F3</color>
+    <color name="ds_kind_pdf">#FFD83E48</color>
+    <color name="ds_kind_word_bg">#FFEDF4FF</color>
+    <color name="ds_kind_word">#FF2175D6</color>
+    <color name="ds_kind_excel_bg">#FFECF7F0</color>
+    <color name="ds_kind_excel">#FF208354</color>
+    <color name="ds_kind_ppt_bg">#FFFFF3E8</color>
+    <color name="ds_kind_ppt">#FFBC5C23</color>
+    <color name="ds_kind_other_bg">#FFF5F7FA</color>
+    <color name="ds_kind_other">#FF637084</color>
+    <!-- File icons use slightly brighter hues than the badges -->
+    <color name="ds_kind_pdf_icon">#FFFF505B</color>
+    <color name="ds_kind_word_icon">#FF2175D6</color>
+    <color name="ds_kind_excel_icon">#FF129E5C</color>
+    <color name="ds_kind_ppt_icon">#FFFF8D28</color>
+
+    <!-- Empty-state illustration -->
+    <color name="ds_illus_backdrop">#FFEAF4FF</color>
+    <color name="ds_illus_companion">#FFD4E9FF</color>
+    <color name="ds_illus_companion_border">#FF9ACBFF</color>
+    <color name="ds_illus_page">#FFFFFFFF</color>
+    <color name="ds_illus_page_border">#FF8EC5FF</color>
+    <color name="ds_illus_line">#FFC3DFFD</color>
+    <color name="ds_illus_badge">#FFBDCDDE</color>
+</resources>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home list row (Figma "File row" 19:419): 80 high, icon tile 48×52, name + meta, star + more. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_80dp"
+    android:background="@drawable/bg_ds_row"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/icon_tile"
+        android:layout_width="@dimen/_48dp"
+        android:layout_height="@dimen/_52dp"
+        android:background="@drawable/bg_ds_file_icon">
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="@dimen/_23dp"
+            android:layout_height="@dimen/_23dp"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            tools:src="@drawable/ic_ds_file_pdf" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.DS.Subtitle2"
+            tools:text="Project brief.pdf" />
+
+        <TextView
+            android:id="@+id/meta"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textAppearance="@style/TextAppearance.DS.Body3"
+            tools:text="2.4 MB  ·  Today, 09:15" />
+    </LinearLayout>
+
+    <!-- 32-wide boxes keep the 24 icons 8 apart, as in Figma, with a bigger touch target. -->
+    <LinearLayout
+        android:id="@+id/actions"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_48dp"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_minus4dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/star"
+            android:layout_width="@dimen/_32dp"
+            android:layout_height="@dimen/_48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/doc_star"
+            android:paddingStart="@dimen/_4dp"
+            android:paddingEnd="@dimen/_4dp"
+            android:scaleType="center"
+            tools:src="@drawable/ic_ds_star_on" />
+
+        <ImageButton
+            android:id="@+id/more"
+            android:layout_width="@dimen/_32dp"
+            android:layout_height="@dimen/_48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/doc_more"
+            android:scaleType="center"
+            android:src="@drawable/ic_ds_more_vert"
+            app:tint="@color/ds_text_secondary" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/check"
+        android:layout_width="@dimen/_24dp"
+        android:layout_height="@dimen/_24dp"
+        android:layout_marginStart="@dimen/_8dp"
+        android:layout_marginEnd="@dimen/_12dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_ds_check_square"
+        android:visibility="gone"
+        app:tint="@color/ds_primary" />
+</LinearLayout>

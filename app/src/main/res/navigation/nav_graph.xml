@@ -12,7 +12,17 @@
 
     <fragment
         android:id="@+id/home"
-        android:name="com.chethan616.clearpdf.ui.fragment.home.HomeFragment">
+        android:name="com.chethan616.clearpdf.presentation.feature.home.HomeFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/recent"
+        android:name="com.chethan616.clearpdf.presentation.feature.collection.RecentFragment">
+    </fragment>
+
+    <fragment
+        android:id="@+id/favorites"
+        android:name="com.chethan616.clearpdf.presentation.feature.collection.FavoritesFragment">
     </fragment>
 
     <fragment

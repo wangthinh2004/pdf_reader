@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
+import com.chethan616.clearpdf.core.platform.StorageAccess
 import com.chethan616.clearpdf.utils.DocKind
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
