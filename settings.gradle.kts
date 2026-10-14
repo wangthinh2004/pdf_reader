@@ -21,6 +21,16 @@ dependencyResolutionManagement {
         mavenCentral()
         // Tesseract4Android (open-source offline OCR fallback) is published via JitPack.
         maven { url = uri("https://jitpack.io") }
+        // Ad mediation networks pulled in by sdk-ads-boong.
+        maven { url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea") }
+        maven { url = uri("https://artifact.bytedance.com/repository/pangle") }
+        maven {
+            url = uri("https://maven.pkg.github.com/UniSoft-Android/SDK_ADS_BOONG")
+            credentials {
+                username = providers.gradleProperty("gpr.user").get()
+                password = providers.gradleProperty("gpr.key").get()
+            }
+        }
     }
 }
 

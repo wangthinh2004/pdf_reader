@@ -18,7 +18,7 @@ Read and annotate PDFs, sign forms, work with Office documents, edit spreadsheet
   <a href="https://github.com/Chethan616/ClearPDF/releases/latest"><img src="https://img.shields.io/github/v/release/Chethan616/ClearPDF?style=flat-square&color=0A84FF&label=latest%20release" alt="Latest release"></a>
   <a href="https://github.com/Chethan616/ClearPDF/releases"><img src="https://img.shields.io/github/downloads/Chethan616/ClearPDF/total?style=flat-square&color=BF5AF2&label=downloads" alt="Total GitHub downloads"></a>
   <a href="LICENSE"><img src="https://img.shields.io/github/license/Chethan616/ClearPDF?style=flat-square&color=30D158" alt="MIT license"></a>
-  <img src="https://img.shields.io/badge/Android-6.0%2B-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android 6.0 or newer">
+  <img src="https://img.shields.io/badge/Android-7.0%2B-3DDC84?style=flat-square&logo=android&logoColor=white" alt="Android 7.0 or newer">
   <a href="https://github.com/Chethan616/ClearPDF/actions/workflows/android.yml"><img src="https://img.shields.io/github/actions/workflow/status/Chethan616/ClearPDF/android.yml?branch=main&style=flat-square&label=Android%20build" alt="Android build status"></a>
 </p>
 
@@ -77,7 +77,7 @@ Create a PDF from images, text, or local HTML. The FOSS build can also convert a
 
 ## Supported Android versions and formats
 
-- **Android:** API 23 (Android 6.0) or newer.
+- **Android:** API 24 (Android 7.0) or newer.
 - **Document formats:** PDF; DOC/DOCX; XLS/XLSX; PPT/PPTX; ODT/ODS/ODP; RTF; CSV; TXT.
 - **Images:** PNG, JPEG, WebP, BMP, and HEIC are supported by the image/document flows. Feature availability can vary by device and Android version.
 
@@ -185,7 +185,7 @@ ClearPDF can annotate PDFs, fill forms, add signatures, and manage pages, but it
 <details>
 <summary><strong>What Android version do I need?</strong></summary>
 
-Android 6.0 (API 23) or newer. Features provided by Google Play services may not be available on every device.
+Android 7.0 (API 24) or newer. Features provided by Google Play services may not be available on every device.
 </details>
 
 ## Credits

@@ -45,6 +45,9 @@
         android:localeConfig="@xml/locales_config"
         tools:targetApi="33">
         <activity
+            android:name=".ui.activity.welcome.WelcomeActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:hardwareAccelerated="true"

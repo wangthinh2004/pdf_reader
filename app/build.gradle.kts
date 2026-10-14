@@ -47,7 +47,7 @@ android {
 
     defaultConfig {
         applicationId = "com.chethan616.clearpdf"
-        minSdk = 23
+        minSdk = 24
         targetSdk = 36
         versionCode = 4
         versionName = "2.0.0"
@@ -57,6 +57,16 @@ android {
         // AI summary (both flavors). Left blank when local.properties has no key, which hides it.
         buildConfigField("String", "GEMINI_API_KEY", "\"$geminiApiKey\"")
         buildConfigField("String", "GEMINI_MODEL", "\"$geminiModel\"")
+        val licenseKey = project.findProperty("iap.license.key")?.toString()
+            ?: System.getenv("IAP_LICENSE_KEY")
+            ?: ""
+        buildConfigField("String", "IAP_LICENSE_KEY", "\"$licenseKey\"")
+        manifestPlaceholders["admob_app_id"] = "ca-app-pub-4226576672608638~8100601777"
+        manifestPlaceholders["facebook_app_id"] = ""
+        manifestPlaceholders["facebook_client_token"] = ""
+        manifestPlaceholders["adjust_token_id"] = ""
+        manifestPlaceholders["dataBucket_api_Key"] = "PHOLxXiGAiUR05djodzYXjIQmzUtIJyqHMpk1EYf6SeweZM5PyrkP4AqqIWjF3QmwupwbBBQ8EtPlcFn1wEbe8NqExxx8FmWLF4pQHjtcAxrzo3PhJsU89OrkFHCqqZ8"
+        manifestPlaceholders["dataBucket_base_url"] = "https://ingest.databuckets.com/push?h=OYKJX"
     }
 
     signingConfigs {
@@ -224,6 +234,9 @@ dependencies {
     implementation(libs.mlkit.subject.segmentation)
     // A real XmlPullParser for JVM tests; android.jar only carries stubs of it.
     testImplementation("net.sf.kxml:kxml2:2.3.0")
+
+    implementation("com.unisoft.tuyen2002.ab309:sdk-ads-boong:1.0.2")
+    implementation("com.unisoft.tuyen2002:boong-iap:1.0.5")
 
     // Optional Office engine (powered by LibreOffice) — installer differs per distribution.
     "playImplementation"(libs.play.feature.delivery.ktx)
