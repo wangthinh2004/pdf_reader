@@ -74,6 +74,11 @@
     </fragment>
 
     <fragment
+        android:id="@+id/pdf_to_word"
+        android:name="com.chethan616.clearpdf.presentation.feature.tool.pdftoword.PdfToWordFragment">
+    </fragment>
+
+    <fragment
         android:id="@+id/create_pdf"
         android:name="com.chethan616.clearpdf.ui.fragment.tool.CreatePdfFragment">
     </fragment>

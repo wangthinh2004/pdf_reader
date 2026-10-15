@@ -73,6 +73,20 @@ internal object PptxRenderer {
         return doc
     }
 
+    /** The first slide as a [widthPx]-wide bitmap, for the Home grid; null when there isn't one. */
+    fun renderFirstSlide(bytes: ByteArray, widthPx: Int): Bitmap? {
+        val pkg = readPackage(bytes) ?: return null
+        val first = pkg.slidePaths().firstOrNull() ?: return null
+        val (slideW, slideH) = pkg.slideSize()
+        val scale = widthPx / slideW
+        val bitmap = Bitmap.createBitmap(widthPx, Math.round(slideH * scale).coerceAtLeast(1), Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        canvas.drawColor(Color.WHITE)
+        canvas.scale(scale, scale)
+        runCatching { pkg.drawSlide(canvas, first, 1) }
+        return bitmap
+    }
+
     // ── Package ─────────────────────────────────────────────────────────────────
 
     private fun readPackage(bytes: ByteArray): Package? = runCatching {
@@ -208,6 +222,14 @@ internal object PptxRenderer {
                     ?: Color.WHITE
             )
 
+            // A picture background, from the first of slide → layout → master that sets one.
+            listOfNotNull(slidePath, layoutPath, masterPath).firstNotNullOfOrNull { path ->
+                part(path)?.find("p:bg")?.find("a:blipFill")?.let { path to it }
+            }?.let { (path, blipFill) ->
+                val bounds = canvas.clipBounds
+                drawBlip(canvas, blipFill, Rect(0f, 0f, bounds.right.toFloat(), bounds.bottom.toFloat()), path)
+            }
+
             val tree = slide.find("p:spTree") ?: return
             drawShapeTree(canvas, tree, ctx, identityTransform())
         }
@@ -269,6 +291,9 @@ internal object PptxRenderer {
             if (fill != null && spPr.child("a:noFill") == null) {
                 canvas.drawRect(box.toRectF(), Paint(Paint.ANTI_ALIAS_FLAG).apply { color = fill })
             }
+            // A picture used as the shape's fill — how Canva and Google Slides export most artwork,
+            // full-slide backgrounds included. Stretched to the box, like `<a:stretch>`.
+            spPr?.child("a:blipFill")?.let { drawBlip(canvas, it, box, ctx.slidePath) }
             // An outline, when the author asked for one — this is what makes boxed callouts and
             // table-like arrangements of rectangles still read as boxes.
             spPr?.child("a:ln")?.child("a:solidFill")?.let { solidFillColor(it, ctx.theme) }?.let { stroke ->
@@ -280,6 +305,18 @@ internal object PptxRenderer {
 
             shape.child("p:txBody")?.let { drawTextBody(canvas, it, box, ctx, placeholderType(shape), fill) }
             canvas.restore()
+        }
+
+        /** Draw the image a `<a:blipFill>` (resolved against [relsOf]'s relationships) points to, filling [box]. */
+        private fun drawBlip(canvas: Canvas, blipFill: OoxmlNode, box: Rect, relsOf: String) {
+            val embed = blipFill.child("a:blip")?.attr("r:embed") ?: return
+            val path = rels(relsOf)[embed] ?: return
+            val bitmap = decodeMedia(path, box.width(), box.height()) ?: return
+            canvas.save()
+            canvas.clipRect(box.toRectF())
+            canvas.drawBitmap(bitmap, null, box.toRectF(), Paint(Paint.FILTER_BITMAP_FLAG))
+            canvas.restore()
+            bitmap.recycle()
         }
 
         private fun drawPicture(canvas: Canvas, pic: OoxmlNode, ctx: SlideContext, transform: Transform) {

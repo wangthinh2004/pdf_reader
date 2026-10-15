@@ -272,7 +272,8 @@ class HomeFragment : BaseFragment<FragmentHomeScreenBinding>(FragmentHomeScreenB
             CreateAction.SCAN -> AppNavigator.open(nav, R.id.scan)
             CreateAction.IMAGES, CreateAction.IMAGE_TO_PDF -> AppNavigator.open(nav, R.id.images_to_pdf)
             CreateAction.PDF_TO_IMAGE -> AppNavigator.open(nav, R.id.pdf_to_images)
-            CreateAction.PDF_TO_WORD, CreateAction.WORD_TO_PDF -> comingSoon()
+            CreateAction.PDF_TO_WORD -> AppNavigator.open(nav, R.id.pdf_to_word)
+            CreateAction.WORD_TO_PDF -> comingSoon()
         }
     }
 

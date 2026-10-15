@@ -45,7 +45,7 @@ class CreateSheet : BottomSheetDialogFragment() {
         binding.importScan.setup(R.drawable.ic_document_scanner, R.string.create_scan, CreateAction.SCAN)
         binding.convertPdfToImage.setup(R.drawable.ic_ds_scissors, R.string.create_pdf_to_image, R.string.create_pdf_to_image_sub, CreateAction.PDF_TO_IMAGE)
         binding.convertImageToPdf.setup(R.drawable.ic_ds_combine, R.string.create_image_to_pdf, R.string.create_image_to_pdf_sub, CreateAction.IMAGE_TO_PDF)
-        binding.convertPdfToWord.setup(R.drawable.ic_ds_scissors, R.string.create_pdf_to_word, R.string.create_pdf_to_word_sub, CreateAction.PDF_TO_WORD)
+        binding.convertPdfToWord.setup(R.drawable.ic_ds_file_word, R.string.create_pdf_to_word, R.string.create_pdf_to_word_sub, CreateAction.PDF_TO_WORD)
         binding.convertWordToPdf.setup(R.drawable.ic_ds_combine, R.string.create_word_to_pdf, R.string.create_word_to_pdf_sub, CreateAction.WORD_TO_PDF)
     }
 

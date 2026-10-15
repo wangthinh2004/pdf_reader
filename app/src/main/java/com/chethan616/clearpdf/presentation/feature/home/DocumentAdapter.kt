@@ -9,17 +9,15 @@ import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.chethan616.clearpdf.R
-import com.chethan616.clearpdf.core.platform.toUri
 import com.chethan616.clearpdf.databinding.ItemDocumentCardBinding
 import com.chethan616.clearpdf.databinding.ItemDocumentRowBinding
 import com.chethan616.clearpdf.domain.model.LibraryDocument
 import com.chethan616.clearpdf.presentation.base.simpleDiff
-import com.chethan616.clearpdf.presentation.common.PdfThumbnails
+import com.chethan616.clearpdf.presentation.common.DocumentThumbnails
 import com.chethan616.clearpdf.presentation.common.formatDocumentDate
 import com.chethan616.clearpdf.presentation.common.formatDocumentSize
 import com.chethan616.clearpdf.presentation.common.metaLine
 import com.chethan616.clearpdf.presentation.common.style
-import com.chethan616.clearpdf.utils.DocKind
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
@@ -39,8 +37,8 @@ interface DocumentListener {
 }
 
 /**
- * Home's documents as list rows or grid cards ([grid]). Grid cards render the first page of a PDF
- * in [thumbnailScope]; other kinds show their icon on the page.
+ * Home's documents as list rows or grid cards ([grid]). Grid cards show a first-page preview from
+ * [DocumentThumbnails], loaded in [thumbnailScope]; kinds it can't preview show their icon on the page.
  */
 class DocumentAdapter(
     private val listener: DocumentListener,
@@ -141,17 +139,16 @@ class DocumentAdapter(
             thumbnail.setImageDrawable(null)
             thumbnail.isVisible = false
             kindIcon.isVisible = true
-            if (doc.kind != DocKind.Pdf) return@with
-            val uri = doc.ref.toUri()
+            if (!DocumentThumbnails.supports(doc)) return@with
             val width = root.resources.getDimensionPixelSize(R.dimen.ds_thumbnail_width)
             val show = { bitmap: android.graphics.Bitmap ->
                 thumbnail.setImageBitmap(bitmap)
                 thumbnail.isVisible = true
                 kindIcon.isVisible = false
             }
-            PdfThumbnails.cached(uri, width)?.let(show) ?: run {
+            DocumentThumbnails.cached(doc, width)?.let(show) ?: run {
                 thumbnailJob = thumbnailScope.launch {
-                    PdfThumbnails.load(root.context, uri, width)?.let(show)
+                    DocumentThumbnails.load(root.context, doc, width)?.let(show)
                 }
             }
         }

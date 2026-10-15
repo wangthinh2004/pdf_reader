@@ -12,6 +12,8 @@ sealed class AppError(message: String? = null, cause: Throwable? = null) : Excep
     class Remote(message: String) : AppError(message)
     /** A file name that is empty or has characters storage won't accept. */
     class InvalidName : AppError("Invalid file name")
+    /** The PDF needs a password to open. */
+    class PasswordProtected(cause: Throwable? = null) : AppError("Password protected", cause)
     class Unknown(cause: Throwable) : AppError(cause.message, cause)
 
     companion object {

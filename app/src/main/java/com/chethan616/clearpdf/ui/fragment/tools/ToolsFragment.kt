@@ -70,6 +70,7 @@ class ToolsFragment : Fragment() {
             R.string.tools_section_convert, listOf(
                 Tool(R.string.tool_images, R.string.tool_images_sub, R.color.tool_images_to_pdf, R.drawable.ic_image, R.id.images_to_pdf),
                 Tool(R.string.tool_pdf_to_images, R.string.tool_pdf_to_images_sub, R.color.tool_pdf_to_images, R.drawable.ic_collections, R.id.pdf_to_images),
+                Tool(R.string.tool_pdf_to_word, R.string.tool_pdf_to_word_sub, R.color.tool_pdf_to_word, R.drawable.ic_format_word, R.id.pdf_to_word),
                 Tool(R.string.tool_extract, R.string.tool_extract_sub, R.color.tool_extract_text, R.drawable.ic_text_snippet, R.id.extract_text),
                 Tool(R.string.tool_create, R.string.tool_create_sub, R.color.tool_create, R.drawable.ic_note_add, R.id.create_pdf)
             )

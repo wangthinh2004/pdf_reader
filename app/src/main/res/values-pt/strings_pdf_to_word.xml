@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PDF to Word tool. -->
+<resources>
+    <string name="tool_pdf_to_word">PDF para Word</string>
+    <string name="tool_pdf_to_word_sub">.docx editável</string>
+    <string name="pdf_to_word_hero_sub">Transforme um PDF num documento Word editável</string>
+    <string name="pdf_to_word_action">Converter para Word</string>
+    <string name="pdf_to_word_preparing">A preparar…</string>
+    <string name="pdf_to_word_working">A ler a página %1$d de %2$d…</string>
+    <string name="pdf_to_word_saving">A guardar o documento…</string>
+    <string name="pdf_to_word_open">Abrir documento</string>
+    <string name="pdf_to_word_success">Documento Word guardado em %1$s · %2$d páginas</string>
+    <string name="pdf_to_word_success_ocr">Documento Word guardado em %1$s · %2$d páginas, %3$d lidas com OCR</string>
+    <string name="pdf_to_word_failed">Não foi possível converter este PDF.</string>
+    <string name="pdf_to_word_locked">Este PDF está protegido por palavra-passe. Remova-a primeiro com Descriptografar PDF.</string>
+    <string name="pdf_to_word_note">Texto, títulos, listas, tabelas e imagens tornam-se conteúdo Word editável. Layouts complexos podem mudar ligeiramente. As páginas digitalizadas são lidas com OCR. Tudo fica neste dispositivo.</string>
+</resources>

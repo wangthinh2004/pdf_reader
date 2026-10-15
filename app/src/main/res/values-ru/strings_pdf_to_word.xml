@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- PDF to Word tool. -->
+<resources>
+    <string name="tool_pdf_to_word">PDF в Word</string>
+    <string name="tool_pdf_to_word_sub">Редактируемый .docx</string>
+    <string name="pdf_to_word_hero_sub">Превратите PDF в редактируемый документ Word</string>
+    <string name="pdf_to_word_action">Конвертировать в Word</string>
+    <string name="pdf_to_word_preparing">Подготовка…</string>
+    <string name="pdf_to_word_working">Чтение страницы %1$d из %2$d…</string>
+    <string name="pdf_to_word_saving">Сохранение документа…</string>
+    <string name="pdf_to_word_open">Открыть документ</string>
+    <string name="pdf_to_word_success">Документ Word сохранён в %1$s · страниц: %2$d</string>
+    <string name="pdf_to_word_success_ocr">Документ Word сохранён в %1$s · страниц: %2$d, распознано OCR: %3$d</string>
+    <string name="pdf_to_word_failed">Не удалось конвертировать этот PDF.</string>
+    <string name="pdf_to_word_locked">Этот PDF защищён паролем. Сначала снимите пароль с помощью «Расшифровать PDF».</string>
+    <string name="pdf_to_word_note">Текст, заголовки, списки, таблицы и изображения становятся редактируемым содержимым Word. Сложная вёрстка может немного сместиться. Отсканированные страницы распознаются OCR. Всё обрабатывается на этом устройстве.</string>
+</resources>

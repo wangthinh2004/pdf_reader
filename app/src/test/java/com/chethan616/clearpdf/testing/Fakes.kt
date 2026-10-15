@@ -8,6 +8,7 @@ import com.chethan616.clearpdf.domain.model.LibraryDocument
 import com.chethan616.clearpdf.domain.model.OcrWord
 import com.chethan616.clearpdf.domain.model.OutputDocument
 import com.chethan616.clearpdf.domain.model.SummaryAvailability
+import com.chethan616.clearpdf.domain.model.WordConversion
 import com.chethan616.clearpdf.domain.repository.DocumentRepository
 import com.chethan616.clearpdf.domain.repository.EngagementRepository
 import com.chethan616.clearpdf.domain.repository.FavoritesRepository
@@ -103,6 +104,24 @@ class FakePdfRepository : PdfRepository {
     }
     override suspend fun stampSearchableText(source: DocumentInfo, output: OutputDocument, wordsByPage: Map<Int, List<OcrWord>>) {
         stamped += wordsByPage
+    }
+
+    /** Pages [convertToWord] treats as scans and sends to OCR. */
+    var scannedPages = emptySet<Int>()
+    var convertError: Throwable? = null
+    val recognized = mutableMapOf<Int, List<OcrWord>>()
+    override suspend fun convertToWord(
+        source: DocumentInfo,
+        output: OutputDocument,
+        recognize: suspend (pageIndex: Int) -> List<OcrWord>,
+        onProgress: (page: Int, total: Int) -> Unit
+    ): WordConversion {
+        convertError?.let { throw it }
+        for (page in 0 until pages) {
+            onProgress(page, pages)
+            if (page in scannedPages) recognized[page] = recognize(page)
+        }
+        return WordConversion(pages, recognized.count { it.value.isNotEmpty() }, tables = 1, pictures = 0, sizeBytes = 4096)
     }
 }
 
